@@ -1,0 +1,137 @@
+#video_stream {
+  padding-top: 10px;
+  height: 25%;
+  width: inherit;
+}
+
+.toolbar__box--bottom-right{
+  display:none !important;
+}
+
+#questions-box{
+  margin-top: 10px;
+  height: 70%;
+  width:inherit;
+  background-color: grey;
+}
+
+.row {
+  margin-right: 0;
+}
+
+#chat-wrapper {
+  background-color: white;
+}
+
+.question-video-wrapper{
+  height: 100%;
+  width: 300px;
+  margin-right: 10px;
+  /*background-color: black;*/
+}
+
+svg{
+    display: inline-block;
+    width: 100%;
+    height: 300px;
+}
+
+body{
+font-family: 'Barlow', sans-serif;
+  padding:20px;
+	background-color:rgba(243,233,220,.7);
+	padding:20px;
+  background: linear-gradient(-45deg, #C08552, #5E3023, #895737, #DAB49D);
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 15s ease infinite;
+  -moz-animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite;
+}
+
+#content {
+  height: 100%;
+}
+
+#whiteboard{
+  display:flex;
+}
+
+#chat-button{
+  display: hidden;
+}
+
+#aww-wrapper{
+  background-color: white;
+  border: 2px solid black;
+  width: 100%;
+  height: 100%;
+
+}
+
+@-webkit-keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@-moz-keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+body {
+  font: 13px Helvetica, Arial;
+}
+
+form {
+  background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%;
+}
+
+form input {
+  border: 0; padding: 10px; width: 90%; margin-right: .5%;
+}
+
+form button {
+  width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px;
+}
+
+#messages {
+  list-style-type: none; margin: 0; padding: 0;
+}
+
+#messages li {
+  padding: 5px 10px;
+}
+
+#messages li:nth-child(odd) {
+  background: #eee;
+}
