@@ -1,6 +1,6 @@
 #video_stream {
   padding-top: 10px;
-  height: 25%;
+  height: 30%;
   width: inherit;
 }
 
@@ -9,24 +9,28 @@
 }
 
 #questions-box{
-  margin-top: 10px;
   height: 70%;
   width:inherit;
   background-color: grey;
 }
 
 .row {
+
+  
   margin-right: 0;
 }
 
 #chat-wrapper {
+
+  object-fit: contain;
+  overflow: contain;
   background-color: white;
 }
 
 .question-video-wrapper{
   height: 100%;
-  width: 300px;
-  margin-right: 10px;
+  width: 100%;
+  margin-right: 0px;
   /*background-color: black;*/
 }
 
@@ -53,6 +57,7 @@ font-family: 'Barlow', sans-serif;
 }
 
 #whiteboard{
+  padding-right: unset;
   display:flex;
 }
 
@@ -65,7 +70,6 @@ font-family: 'Barlow', sans-serif;
   border: 2px solid black;
   width: 100%;
   height: 100%;
-
 }
 
 @-webkit-keyframes Gradient {

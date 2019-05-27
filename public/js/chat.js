@@ -46,6 +46,7 @@ function addMessage(msg) {
 	var hr = document.createElement("hr");
 	messageDisplay.appendChild(hr);
 	messageDisplay.appendChild(node);
+	messageDisplay.scrollTop = messageDisplay.scrollHeight;
 }
 
 // init popup window
