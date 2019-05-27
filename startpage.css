@@ -1,0 +1,90 @@
+body{
+
+  font-family: 'Barlow', sans-serif;
+  padding:20px;
+  background-image: url("Cloud.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+
+h1{
+
+    font-family: 'Barlow', sans-serif;
+    font-size: 70pt;
+    text-align: center;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+
+
+
+}
+
+.btn{
+
+   
+    text-align: center;
+
+}
+
+.container1{
+
+    position: absolute;
+    font-size: 30pt;
+    text-align: center;
+    color: white;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    padding: 20px;
+    
+    
+    
+
+}
+p{
+
+    -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+
+
+label{
+
+    -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
+    
+
+}
+.container2{
+
+    position: absolute;
+    font-size: 30pt;
+    text-align: center;
+    color: white;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    padding: 20px;
+    display: none;
+    
+
+
+}
+
+.container3{
+
+    position: absolute;
+    font-size: 30pt;
+    text-align: center;
+    color: white;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    padding: 20px;
+    display: none;
+   
+
+
+}

@@ -9,7 +9,7 @@
 
    <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="/css/style.css" />
 
   <style type="text/css">
   </style>
@@ -21,7 +21,7 @@
 
 </head>
 
-<body onLoad="closeChat()">
+<body onLoad=>
   <div class="row">
     <div id ="whiteboard" class="col-sm-10">
        <div id="aww-wrapper" class="d-flex align-items-end flex-column">
@@ -42,29 +42,12 @@
     </div>
 
    <div class="col-sm-2 ">
-    <!--    <iframe
-          id="video_stream"
-          src="https://player.twitch.tv/?<channel, video, or collection>"
-          height="50"
-          width="250"
-          frameborder="<frameborder>"
-          scrolling="<scrolling>"
-          allowfullscreen="<allowfullscreen>">
-        </iframe> -->
    </div>
    
-    <!-- <iframe frameborder="0"
-        scrolling="no"
-        id="chat_embed"
-        src="https://www.twitch.tv/embed/hebo/chat"
-        height="300"
-        width="500">
-    </iframe>
-    
-    -->
   </div>
   <script src="https://awwapp.com/static/widget/js/aww3.min.js"></script>
   <script type="text/javascript">
+
     var aww = new AwwBoard('#aww-wrapper', {
         /* make sure you're using your own key here */
         apiKey: '3fe98753-7c1a-4f6e-b3bf-25bbab12d37f',
@@ -83,10 +66,6 @@
       });
   </script>
   <script src="https://awwapp.com/static/widget/sample_toolbar.js"></script>
-
-
-
-  <script src="script.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
