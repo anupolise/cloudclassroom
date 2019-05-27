@@ -1,7 +1,30 @@
 #video_stream {
-  display: inline;
+  padding-top: 10px;
+  height: 175px;
+  width: inherit;
 }
 
+.toolbar__box--bottom-right{
+  display:none !important;
+}
+
+#questions-box{
+  margin-top: 10px;
+  height:450px;
+  width:inherit;
+  background-color: grey;
+}
+
+.row {
+  margin-right: 0;
+}
+
+.question-video-wrapper{
+  height:650px;
+  width:275px;
+  margin-right: 10px;
+  /*background-color: black;*/
+}
 
 svg{
     display: inline-block;
@@ -21,11 +44,20 @@ font-family: 'Barlow', sans-serif;
   animation: Gradient 15s ease infinite;
 }
 
-.aww_wrapper{
+#whiteboard{
+  display:flex;
+}
+
+#chat-button{
+  display: hidden;
+}
+
+#aww-wrapper{
   background-color: white;
   border: 2px solid black;
-  width: 600px; 
-  height: 400px;
+  width: 850px;
+  height: 650px;
+
 }
 
 @-webkit-keyframes Gradient {
