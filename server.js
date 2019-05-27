@@ -18,6 +18,10 @@ app.get('/chat', function (req, res) {
 	res.sendFile(path.join(__dirname + '/chat.html'));
 });
 
+app.get('/teacher', function (req, res) {
+	res.sendFile(path.join(__dirname + '/indexteacher.html'));
+});
+
 // Server code
 server.listen(8000);
 

@@ -23,6 +23,9 @@
   background-color: white;
 }
 
+#teacher-bar-wrapper {
+  background-color: white;
+}
 .question-video-wrapper{
   height: 100%;
   width: 300px;
@@ -30,6 +33,12 @@
   /*background-color: black;*/
 }
 
+#teacher-video-wrapper{
+  height: 100%;
+  width: 100%;
+  margin-right: 10px;
+  /*background-color: black;*/
+}
 svg{
     display: inline-block;
     width: 100%;
