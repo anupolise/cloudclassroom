@@ -49,13 +49,16 @@ $('#classroom-select').submit(function(e){
 
 // add new message
 function addMessage(element, text) {
+  var messageDisplay = document.getElementById('message-display');
 	var node = document.createElement("div");
 	node.innerText = text;
 	node.setAttribute("class", "message");
 	
 	var hr = document.createElement("hr");
-	element.appendChild(hr);
-	element.appendChild(node);
+
+	messageDisplay.appendChild(hr);
+	messageDisplay.appendChild(node);
+	messageDisplay.scrollTop = messageDisplay.scrollHeight;
 }
 
 // init popup window

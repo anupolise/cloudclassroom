@@ -20,43 +20,34 @@
 
 <body>
   <div class="row" id="content">
-    <div id ="whiteboard" class="col-sm-9">
-       <div id="aww-wrapper" class="d-flex align-items-end flex-column">
-          <div class="question-video-wrapper">
-            <div id="question-display">
-            </div>
-            <iframe
-              id="video_stream"
-              src="https://player.twitch.tv/?<channel, video, or collection>"
-              frameborder="<frameborder>"
-              scrolling="<scrolling>"
-              allowfullscreen="<allowfullscreen>">
-            </iframe>
-          </div>
-        </div>
+
+    <div id ="whiteboard" class="col-sm-6">
+       <div id="aww-wrapper" class="d-flex align-items-end flex-column"></div>
     </div>
 
 
-<script>
+    <div class="question-video-wrapper col-sm-3">
+      <div id="questions-box">
+      </div>
+      <iframe
+        id="video_stream"
+        src="https://player.twitch.tv/?<channel, video, or collection>"
+        frameborder="<frameborder>"
+        scrolling="<scrolling>"
+        allowfullscreen="<allowfullscreen>">
+      </iframe>
+    </div>
 
-    var x = "https://player.twitch.tv/?channel=";
-    var y = localStorage.getItem("channelname");
-    var z = x.concat(y);
-    document.getElementById("video_stream").src = z;
+ 
+  <div id="chat-wrapper" class="col-sm-3">
 
-</script>
-
-
-   <div id="chat-wrapper" class="col-sm-3">
-  
-    <div id="message-display"></div>
-
+    <div id="message-display" style="overflow-y: scroll"></div>
     <form action="" id="classroom-chat">
       <input id="input-field" autocomplete="off"/>
       <button>Send</button>
     </form>
 
-    <div class="modal" tabindex="-1" role="dialog" id="select-modal"data-backdrop="static"  data-backdrop="static" >
+    <div class="modal" tabindex="-1" srole="dialog" id="select-modal"data-backdrop="static"  data-backdrop="static" >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -73,8 +64,16 @@
       </div>
     </div>
   </div>
-   
-  </div>
+   <script>
+
+    var x = "https://player.twitch.tv/?channel=";
+    var y = localStorage.getItem("channelname");
+    var z = x.concat(y);
+    document.getElementById("video_stream").src = z;
+
+</script>
+</div>
+  
   <script src="https://awwapp.com/static/widget/js/aww3.min.js"></script>
   <script type="text/javascript">
 

@@ -1,6 +1,6 @@
 #video_stream {
   padding-top: 10px;
-  height: 25%;
+  height: 30%;
   width: inherit;
 }
 
@@ -8,11 +8,22 @@
   display:none !important;
 }
 
+#questions-box{
+  height: 70%;
+  width:inherit;
+  background-color: grey;
+}
+
 .row {
+
+  
   margin-right: 0;
 }
 
 #chat-wrapper {
+
+  object-fit: contain;
+  overflow: contain;
   background-color: white;
 }
 
@@ -21,8 +32,9 @@
 }
 .question-video-wrapper{
   height: 100%;
-  width: 300px;
-  margin-right: 10px;
+  width: 100%;
+  margin-right: 0px;
+  /*background-color: black;*/
 }
 
 #question-display {
@@ -61,6 +73,7 @@ font-family: 'Barlow', sans-serif;
 }
 
 #whiteboard{
+  padding-right: unset;
   display:flex;
 }
 
