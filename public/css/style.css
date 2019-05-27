@@ -8,13 +8,6 @@
   display:none !important;
 }
 
-#questions-box{
-  margin-top: 10px;
-  height: 70%;
-  width:inherit;
-  background-color: grey;
-}
-
 .row {
   margin-right: 0;
 }
@@ -27,7 +20,13 @@
   height: 100%;
   width: 300px;
   margin-right: 10px;
-  /*background-color: black;*/
+}
+
+#question-display {
+  margin-top: 10px;
+  height: 70%;
+  width:inherit;
+  overflow-y: scroll;
 }
 
 svg{
@@ -65,7 +64,6 @@ font-family: 'Barlow', sans-serif;
   border: 2px solid black;
   width: 100%;
   height: 100%;
-
 }
 
 @-webkit-keyframes Gradient {

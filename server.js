@@ -39,17 +39,31 @@ io.on('connection', function (socket) {
 		}
 
 		socket.classroom = data.classroom;
-		socket.emit('init', { msglist: classrooms[data.classroom].messages, teaching: user.teaching });
+		socket.emit('init', {
+			msglist: classrooms[data.classroom].messages,
+			questionList: classrooms[data.classroom].questions,
+			teaching: user.teaching
+		});
 	});
 
 	// Send/receive message
 	socket.on('chat', function (data) {
 		var classroom = classrooms[socket.classroom];
 		classroom.messages.push(data.msg);
-		classroom.teacher.socket.emit('chat', { msg: data.msg });
 
-		for (var i = 0; i < classroom.students.length; i++)
+		var question;
+		if (data.msg.includes('@teacher')) {
+			question = createQuestion(data.msg.replace('@teacher', ''), -1);
+			classroom.questions.push(question);
+		}
+
+		classroom.teacher.socket.emit('chat', { msg: data.msg });
+		if (question) classroom.teacher.socket.emit('question', { question: question });
+
+		for (var i = 0; i < classroom.students.length; i++) {
 			classroom.students[i].socket.emit('chat', { msg: data.msg });
+			if (question) classroom.students[i].socket.emit('question', { question: question});
+		}
 	});
 });
 
@@ -58,7 +72,8 @@ function createClassroom(name, teacherName, teacherSocket) {
 		name: name,
 		teacher: createUser(teacherName, teacherSocket, true),
 		messages: [],
-		students: []
+		students: [],
+		questions: []
 	};
 }
 
@@ -67,5 +82,12 @@ function createUser(name, socket, teaching) {
 		name: name,
 		socket: socket,
 		teaching: teaching
+	};
+}
+
+function createQuestion(question, resolvedTime) {
+	return {
+		question: question,
+		resolvedTime: resolvedTime // in seconds
 	};
 }

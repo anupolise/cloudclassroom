@@ -18,6 +18,11 @@
 	height: 90%;
 }
 
-#chat-wrapper .message {
-	padding: 5px;
+.message {
+	padding: 15px;
+}
+
+hr {
+	margin-top: 0;
+	margin-bottom: 0;
 }
