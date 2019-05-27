@@ -1,6 +1,6 @@
 #video_stream {
   padding-top: 10px;
-  height: 175px;
+  height: 25%;
   width: inherit;
 }
 
@@ -10,7 +10,7 @@
 
 #questions-box{
   margin-top: 10px;
-  height:450px;
+  height: 70%;
   width:inherit;
   background-color: grey;
 }
@@ -19,9 +19,13 @@
   margin-right: 0;
 }
 
+#chat-wrapper {
+  background-color: white;
+}
+
 .question-video-wrapper{
-  height:650px;
-  width:275px;
+  height: 100%;
+  width: 300px;
   margin-right: 10px;
   /*background-color: black;*/
 }
@@ -44,6 +48,10 @@ font-family: 'Barlow', sans-serif;
   animation: Gradient 15s ease infinite;
 }
 
+#content {
+  height: 100%;
+}
+
 #whiteboard{
   display:flex;
 }
@@ -55,8 +63,8 @@ font-family: 'Barlow', sans-serif;
 #aww-wrapper{
   background-color: white;
   border: 2px solid black;
-  width: 850px;
-  height: 650px;
+  width: 100%;
+  height: 100%;
 
 }
 

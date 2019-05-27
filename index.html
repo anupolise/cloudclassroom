@@ -21,27 +21,26 @@
 
 </head>
 
-<body onLoad=>
-  <div class="row">
-    <div id ="whiteboard" class="col-sm-10">
+<body>
+  <div class="row" id="content">
+    <div id ="whiteboard" class="col-sm-9">
        <div id="aww-wrapper" class="d-flex align-items-end flex-column">
-          <div class="row">
-              <div class="question-video-wrapper">
-                <div id="questions-box">
-                </div>
-                <iframe
-                  id="video_stream"
-                  src="https://player.twitch.tv/?<channel, video, or collection>"
-                  frameborder="<frameborder>"
-                  scrolling="<scrolling>"
-                  allowfullscreen="<allowfullscreen>">
-                </iframe>
+          <div class="question-video-wrapper">
+            <div id="questions-box">
             </div>
+            <iframe
+              id="video_stream"
+              src="https://player.twitch.tv/?<channel, video, or collection>"
+              frameborder="<frameborder>"
+              scrolling="<scrolling>"
+              allowfullscreen="<allowfullscreen>">
+            </iframe>
           </div>
-       </div>
+        </div>
     </div>
 
-   <div class="col-sm-2 ">
+   <div id="chat-wrapper" class="col-sm-3">
+
    </div>
    
   </div>
