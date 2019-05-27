@@ -35,16 +35,16 @@
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
             <label for="exampleFormControlTextarea2">Enter Channel Name:</label>
             <textarea class="form-control" id="exampleFormControlTextarea2" rows="1"></textarea>
-            <button  onclick="redirect()" type="button" class="btn btn-primary btn-lg">Submit</button>
+            <button  onclick="redirectstudent()" type="button" class="btn btn-primary btn-lg">Submit</button>
         </div>
 </div>
 
 
 <div class = "container3" id="ProfessorForm">
         <div class="form-group">
-                <label for="exampleFormControlTextarea1">Enter Classroom Code to Create a Classroom:</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
-                <button  onclick="redirect()" type="button" class="btn btn-primary btn-lg">Submit</button>
+                <label for="exampleFormControlTextarea3">Enter Classroom Code to Create a Classroom:</label>
+                <textarea class="form-control" id="exampleFormControlTextarea3" rows="1"></textarea>
+                <button  onclick="redirectprofessor()" type="button" class="btn btn-primary btn-lg">Submit</button>
             </div>
         
 </div>
@@ -67,9 +67,24 @@
     </script>
     
 
+
     <script>
     
-        function redirect(){
+        function redirectprofessor(){
+
+            var getInput0 = document.getElementById("exampleFormControlTextarea3").value;
+            localStorage.setItem("classroomcodeProf",getInput0);
+            document.location.href = "/teacher";
+
+
+        }
+    
+    </script>
+
+
+    <script>
+    
+        function redirectstudent(){
             var getInput1 =  document.getElementById("exampleFormControlTextarea1").value;
             localStorage.setItem("classroomcode",getInput1);
             var getInput2 =  document.getElementById("exampleFormControlTextarea2").value;
