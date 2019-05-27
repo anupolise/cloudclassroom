@@ -3,13 +3,24 @@ var name; // user name for current session
 
 // initialize classroom (old messages)
 socket.on('init', function (data) {
-	for (var i = 0; i < data.msglist.length; i++)
-		addMessage(data.msglist[i]);
+	var messageDisplay = document.getElementById('message-display');
+	var questionDisplay = document.getElementById('question-display');
+	for (var i = 0; i < data.msglist.length; i++) {
+		addMessage(messageDisplay, data.msglist[i]);
+		addMessage(questionDisplay, data.questionList[i].question);
+	}
 });
 
 // receive new message
 socket.on('chat', function (data) {
-	addMessage(data.msg);
+	var messageDisplay = document.getElementById('message-display');
+	addMessage(messageDisplay, data.msg);
+});
+
+// receive new message
+socket.on('question', function (data) {
+	var questionDisplay = document.getElementById('question-display');
+	addMessage(questionDisplay, data.question.question);
 });
 
 // send new message
@@ -37,13 +48,14 @@ $('#classroom-select').submit(function(e){
 });
 
 // add new message
-function addMessage(msg) {
-	var messageDisplay = document.getElementById('message-display');
+function addMessage(element, text) {
+  var messageDisplay = document.getElementById('message-display');
 	var node = document.createElement("div");
-	node.innerText = msg;
+	node.innerText = text;
 	node.setAttribute("class", "message");
-
+	
 	var hr = document.createElement("hr");
+
 	messageDisplay.appendChild(hr);
 	messageDisplay.appendChild(node);
 	messageDisplay.scrollTop = messageDisplay.scrollHeight;

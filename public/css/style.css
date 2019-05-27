@@ -27,6 +27,9 @@
   background-color: white;
 }
 
+#teacher-bar-wrapper {
+  background-color: white;
+}
 .question-video-wrapper{
   height: 100%;
   width: 100%;
@@ -34,6 +37,19 @@
   /*background-color: black;*/
 }
 
+#question-display {
+  margin-top: 10px;
+  height: 70%;
+  width:inherit;
+  overflow-y: scroll;
+}
+
+#teacher-video-wrapper{
+  height: 100%;
+  width: 100%;
+  margin-right: 10px;
+  /*background-color: black;*/
+}
 svg{
     display: inline-block;
     width: 100%;
