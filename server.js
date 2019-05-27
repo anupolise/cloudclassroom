@@ -14,10 +14,6 @@ app.get('/', function (req, res) {
 	res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-app.get('/chat', function (req, res) {
-	res.sendFile(path.join(__dirname + '/chat.html'));
-});
-
 // Server code
 server.listen(8000);
 

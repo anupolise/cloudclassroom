@@ -39,8 +39,12 @@ $('#classroom-select').submit(function(e){
 // add new message
 function addMessage(msg) {
 	var messageDisplay = document.getElementById('message-display');
-	var node = document.createElement("li");
+	var node = document.createElement("div");
 	node.innerText = msg;
+	node.setAttribute("class", "message");
+
+	var hr = document.createElement("hr");
+	messageDisplay.appendChild(hr);
 	messageDisplay.appendChild(node);
 }
 

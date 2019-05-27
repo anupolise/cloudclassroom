@@ -1,11 +1,23 @@
-* {
-	margin: 0; padding: 0; box-sizing: border-box;
-}
 
-input {
+#chat-wrapper input {
 	padding: 10px; width: 70%; margin-right: .5%;
+	border-bottom: 1px black;
+	border-style: inset;
 }
 
-button {
+#chat-wrapper button {
 	width: 20%; background: rgb(130, 224, 255); border: none; padding: 10px;
+}
+
+#chat-wrapper form {
+	position: unset;
+	background-color: white;
+}
+
+#chat-wrapper #message-display {
+	height: 90%;
+}
+
+#chat-wrapper .message {
+	padding: 5px;
 }
