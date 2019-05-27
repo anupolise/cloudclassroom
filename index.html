@@ -4,7 +4,8 @@
   <title>Cloud Classroom</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
+  <!-- <link rel="stylesheet" href="whiteboard.css"> --> 
   <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
 
    <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
@@ -22,14 +23,18 @@
 </head>
 
 <body>
+
+   
+    
     <iframe
         id="video_stream"
-        src="https://player.twitch.tv/?<channel, video, or collection>"
+        
         height="300"
         width="500"
         frameborder="<frameborder>"
         scrolling="<scrolling>"
-        allowfullscreen="<allowfullscreen>">
+        allowfull
+        screen="<allowfullscreen>">
     </iframe>
     <iframe frameborder="0"
         scrolling="no"
@@ -46,6 +51,16 @@
                   – modify style as needed -->
     </div>
    
+    <script>
+            var x = "https://player.twitch.tv/?channel=";
+            var y = localStorage.getItem("channelname");
+            var z = x.concat(y);    
+            document.getElementById("video_stream").src = z;
+           
+            
+           
+      </script>
+
 
 <script src="https://awwapp.com/static/widget/js/aww3.min.js"></script>
 <script type="text/javascript">
@@ -53,7 +68,7 @@
         /* make sure you're using your own key here */
         apiKey: '3fe98753-7c1a-4f6e-b3bf-25bbab12d37f',
         /* put a unique text here */
-        boardLink: '<PUT-UNIQUE-STRING-HERE>',
+        boardLink: localStorage.getItem("classroomcode"), //classroom code from start page
         multiPage: true,
         sendUserPointer: true,
         showUserPointers: true
@@ -66,9 +81,9 @@
         initToolbar();
       });
 </script>
-<script src="https://awwapp.com/static/widget/sample_toolbar.js"></script>
+<<script src="https://awwapp.com/static/widget/sample_toolbar.js"></script> 
 
-
+<!-- <script src="whiteboard.js"></script> -->
 
 <script src="js/scripts.js"></script>
 

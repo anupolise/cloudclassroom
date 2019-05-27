@@ -31,8 +31,10 @@
 
 <div class = "container2" id="StudentForm">
     <div class="form-group">
-            <label for="exampleFormControlTextarea1">Enter Classroom Code to Join:</label>
+            <label for="exampleFormControlTextarea1">Enter Classroom Code:</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+            <label for="exampleFormControlTextarea2">Enter Channel Name:</label>
+            <textarea class="form-control" id="exampleFormControlTextarea2" rows="1"></textarea>
             <button  onclick="redirect()" type="button" class="btn btn-primary btn-lg">Submit</button>
         </div>
 </div>
@@ -68,8 +70,10 @@
     <script>
     
         function redirect(){
-            var getInput =  document.getElementById("exampleFormControlTextarea1").value;
-            localStorage.setItem("storageName",getInput);
+            var getInput1 =  document.getElementById("exampleFormControlTextarea1").value;
+            localStorage.setItem("classroomcode",getInput1);
+            var getInput2 =  document.getElementById("exampleFormControlTextarea2").value;
+            localStorage.setItem("channelname",getInput2);
             document.location.href='index.html';
 
         }
