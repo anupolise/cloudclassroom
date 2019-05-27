@@ -11,6 +11,11 @@ app.use(express.static('files'));
 
 // Home route
 app.get('/', function (req, res) {
+	res.sendFile(path.join(__dirname + '/startpage.html'));
+});
+
+// Home route
+app.get('/student', function (req, res) {
 	res.sendFile(path.join(__dirname + '/index.html'));
 });
 
