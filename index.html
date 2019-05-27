@@ -32,6 +32,12 @@
         height="300"
         width="500">
     </iframe>
+
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+
     <div style=" background-color: white;
       border: 2px solid black;
       width: 600px; 
@@ -55,6 +61,14 @@
             boardLink: 'Your-Board-ID'
 
         });
+  </script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io.connect('http://localhost');
+    socket.on('news', function (data) {
+      console.log(data);
+      socket.emit('my other event', { my: 'data' });
+    });
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.min.js"></script>

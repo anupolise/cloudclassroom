@@ -1,0 +1,11 @@
+* {
+	margin: 0; padding: 0; box-sizing: border-box;
+}
+
+input {
+	padding: 10px; width: 70%; margin-right: .5%;
+}
+
+button {
+	width: 20%; background: rgb(130, 224, 255); border: none; padding: 10px;
+}
