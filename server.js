@@ -6,6 +6,22 @@ var path = require('path');
 app.use(express.static('public'));
 app.use(express.static('files'));
 
+
+// Global variables
+var classrooms = {
+	"<cid1>": {
+		"name": "<...>",
+		"teacher": "<tid1>",
+		"students": ["sid1", "sid2", "sid3"]
+	},
+	"<cid2>": {
+		"name": "<...>",
+		"teacher": "<tid2>",
+		"students": ["sid1", "sid3", "sid4"]
+	}
+};
+
+
 // Home route
 app.get('/', function (req, res) {
 	res.sendFile(path.join(__dirname + '/index.html'));

@@ -1,11 +1,66 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  	<link rel="stylesheet" href="/css/index.css">
-  </head>
-  <body>
-  	<h1> Hello Home </h1>
-    <!-- the content goes here -->
-  </body>
-  <script src="/js/index.js"></script>
+<html lang="en">
+
+<head>
+  <title>Moose Locations In The Nation</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+
+   <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+
+ 
+
+</head>
+
+<body>
+    <iframe
+        id="video_stream"
+        src="https://player.twitch.tv/?<channel, video, or collection>"
+        height="300"
+        width="500"
+        frameborder="<frameborder>"
+        scrolling="<scrolling>"
+        allowfullscreen="<allowfullscreen>">
+    </iframe>
+    <iframe frameborder="0"
+        scrolling="no"
+        id="chat_embed"
+        src="https://www.twitch.tv/embed/hebo/chat"
+        height="300"
+        width="500">
+    </iframe>
+    <div style=" background-color: white;
+      border: 2px solid black;
+      width: 600px; 
+      height: 400px;" id="aww-wrapper">
+        <!-- Element in which the whiteboard will be shown
+                  – modify style as needed -->
+    </div>
+    <script src="https://awwapp.com/static/widget/js/aww3.min.js">
+    </script>
+    <script type="text/javascript">
+        var aww = new AwwBoard('#aww-wrapper', {
+        });
+    </script>
+</body>
+
+</script>
+   <script type="text/javascript">
+        var aww = new AwwBoard('#aww-wrapper', {
+            /* make sure you're using your own key here */
+            apiKey: '3fe98753-7c1a-4f6e-b3bf-25bbab12d37f',
+            boardLink: 'Your-Board-ID'
+
+        });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
 </html>
