@@ -1,14 +1,20 @@
+var url = new URL(location.href);
 var socket = io.connect(); // init socket connection
-var name; // user name for current session
+var name = url.searchParams.get('name'); // user name for current session
+var code = url.searchParams.get('code'); // user name for current session
+
+socket.emit('classroom-select', { classroom: code, name: name });
 
 // initialize classroom (old messages)
 socket.on('init', function (data) {
 	var messageDisplay = document.getElementById('message-display');
 	var questionDisplay = document.getElementById('question-display');
-	for (var i = 0; i < data.msglist.length; i++) {
+
+	for (var i = 0; i < data.msglist.length; i++)
 		addMessage(messageDisplay, data.msglist[i]);
+
+	for (var i = 0; i < data.questionList.length; i++)
 		addMessage(questionDisplay, data.questionList[i].question);
-	}
 });
 
 // receive new message
@@ -49,17 +55,16 @@ $('#classroom-select').submit(function(e){
 
 // add new message
 function addMessage(element, text) {
-  var messageDisplay = document.getElementById('message-display');
 	var node = document.createElement("div");
 	node.innerText = text;
 	node.setAttribute("class", "message");
 	
 	var hr = document.createElement("hr");
 
-	messageDisplay.appendChild(hr);
-	messageDisplay.appendChild(node);
-	messageDisplay.scrollTop = messageDisplay.scrollHeight;
+	element.appendChild(hr);
+	element.appendChild(node);
+	element.scrollTop = element.scrollHeight;
 }
 
 // init popup window
-$('#select-modal').modal();
+// $('#select-modal').modal();

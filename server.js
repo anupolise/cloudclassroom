@@ -5,6 +5,9 @@ var path = require('path');
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
+// Socket variable
+var classrooms = {};
+
 // Static file serving in public/ directory
 app.use(express.static('public'));
 app.use(express.static('files'));
@@ -14,21 +17,37 @@ app.get('/', function (req, res) {
 	res.sendFile(path.join(__dirname + '/startpage.html'));
 });
 
-// Home route
+// Student route
 app.get('/student', function (req, res) {
-	res.sendFile(path.join(__dirname + '/index.html'));
+	if (req.query.code == undefined || classrooms[req.query.code] == undefined)
+		res.redirect('/');
+	else
+		res.sendFile(path.join(__dirname + '/index.html'));
 });
 
+// Teacher route
 app.get('/teacher', function (req, res) {
-	res.sendFile(path.join(__dirname + '/indexteacher.html'));
+	if (req.query.code == undefined || classrooms[req.query.code] == undefined)
+		res.redirect('/');
+	else
+		res.sendFile(path.join(__dirname + '/indexteacher.html'));
+});
+
+// Create classroom route
+app.get('/create', function(req, res) {
+	if (req.query.code == undefined)
+		res.redirect('/');
+
+	else if (classrooms[req.query.code] == undefined) {
+		classrooms[req.query.code] = createClassroom('Classroom');
+		res.end();
+	}
 });
 
 // Server code
-server.listen(8000);
-
-
-// Socket variable
-var classrooms = {};
+server.listen(8000, function() {
+	console.log('Server listening on port 8000.');
+});
 
 
 // Socket connection
@@ -36,21 +55,29 @@ io.on('connection', function (socket) {
 
 	// Initialize new classroom / load existing classroom
 	socket.on('classroom-select', function (data) {
+		var code = data.classroom;
+		var name = data.name;
+		var teaching = data.teaching;
 		var user;
 
-		if (classrooms[data.classroom] == undefined) {
-			classrooms[data.classroom] = createClassroom('classroom', data.name, socket);
-			user = classrooms[data.classroom].teacher;
-		}
-		else {
-			user = createUser(data.name, socket, false);
-			classrooms[data.classroom].students.push(user);
+		if (classrooms[code] == undefined) {
+			socket.emit('error', { message: `Classroom ${ code } does not exist.` })
+			return;
 		}
 
-		socket.classroom = data.classroom;
+		if (teaching) {
+			classrooms[code].teacher = createUser(name, socket, true);
+			user = classrooms[code].teacher;
+		}
+		else {
+			user = createUser(name, socket, false);
+			classrooms[code].students.push(user);
+		}
+
+		socket.classroom = code;
 		socket.emit('init', {
-			msglist: classrooms[data.classroom].messages,
-			questionList: classrooms[data.classroom].questions,
+			msglist: classrooms[code].messages,
+			questionList: classrooms[code].questions,
 			teaching: user.teaching
 		});
 	});
@@ -66,8 +93,10 @@ io.on('connection', function (socket) {
 			classroom.questions.push(question);
 		}
 
-		classroom.teacher.socket.emit('chat', { msg: data.msg });
-		if (question) classroom.teacher.socket.emit('question', { question: question });
+		if (classroom.teacher != undefined) {
+			classroom.teacher.socket.emit('chat', { msg: data.msg });
+			if (question) classroom.teacher.socket.emit('question', { question: question });
+		}
 
 		for (var i = 0; i < classroom.students.length; i++) {
 			classroom.students[i].socket.emit('chat', { msg: data.msg });
@@ -76,10 +105,10 @@ io.on('connection', function (socket) {
 	});
 });
 
-function createClassroom(name, teacherName, teacherSocket) {
+function createClassroom(name) {
 	return {
 		name: name,
-		teacher: createUser(teacherName, teacherSocket, true),
+		teacher: undefined,
 		messages: [],
 		students: [],
 		questions: []
