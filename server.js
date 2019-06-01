@@ -15,7 +15,7 @@ app.use(express.static('files'));
 
 // Home route
 app.get('/', function (req, res) {
-	res.sendFile(path.join(__dirname + '/startpage.html'));
+	res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 // Student route
@@ -23,7 +23,7 @@ app.get('/student', function (req, res) {
 	if (req.query.code == undefined || classrooms[req.query.code] == undefined)
 		res.redirect('/');
 	else
-		res.sendFile(path.join(__dirname + '/index.html'));
+		res.sendFile(path.join(__dirname + '/student.html'));
 });
 
 // Teacher route
@@ -31,7 +31,7 @@ app.get('/teacher', function (req, res) {
 	if (req.query.code == undefined || classrooms[req.query.code] == undefined)
 		res.redirect('/');
 	else
-		res.sendFile(path.join(__dirname + '/indexteacher.html'));
+		res.sendFile(path.join(__dirname + '/teacher.html'));
 });
 
 // Create classroom route

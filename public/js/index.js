@@ -1,1 +1,0 @@
-alert("javascript included");

@@ -1,86 +1,117 @@
+<!doctype html>
 <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<head>
-  <title>Cloud Classroom</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel = "stylesheet"
+   type = "text/css"
+   href = "/css/startpage.css" />
 
-   <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Barlow&display=swap" rel="stylesheet">
+    <title>Cloud Classroom</title>
+  </head>
+  <body>
+    <h1>Cloud Classroom</h1>
 
-  <link rel="stylesheet" href="/css/style.css" />
+<div class = "container1">
+    <p>Are you a Student or Professor?</p>
+    <button type="button" class="btn btn-primary btn-lg" onclick="showInputProfessor()">Professor</button>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    <button type="button" class="btn btn-primary btn-lg" onclick="showInputStudent()">Student</button>
+</div>
 
-  <style type="text/css">
-  </style>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <link rel="stylesheet" href="https://awwapp.com/static/widget/css/toolbar_style.css">
-  <link rel="stylesheet" href="/css/chat.css">
-</head>
 
-<body>
-  <div class="row" id="content">
 
-    <div id ="whiteboard" class="col-sm-6">
-       <div id="aww-wrapper" class="d-flex align-items-end flex-column"></div>
-    </div>
 
-    <div class="question-video-wrapper col-sm-3">
-      <div id="question-display">
-      </div>
-      <iframe
-        id="video_stream"
-        src="https://player.twitch.tv/?<channel, video, or collection>"
-        frameborder="<frameborder>"
-        scrolling="<scrolling>"
-        allowfullscreen="<allowfullscreen>">
-      </iframe>
-    </div>
 
- 
-  <div id="chat-wrapper" class="col-sm-3">
 
-    <div id="message-display" style="overflow-y: scroll"></div>
-    <form action="" id="classroom-chat">
-      <input id="input-field" autocomplete="off"/>
-      <button>Send</button>
-    </form>
-
-    <div class="modal" tabindex="-1" srole="dialog" id="select-modal"data-backdrop="static"  data-backdrop="static" >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Select Your Classroom</h5>
-          </div>
-          <div class="modal-body">
-            <form action="" id="classroom-select">
-              <input id="classroom-select-field" autocomplete="off" placeholder="Classroom ID"/>
-              <input id="name-select-field" autocomplete="off" placeholder="Your Name"/>
-              <button>Enter</button>
-            </form>
-          </div>
+<div class = "container2" id="StudentForm">
+    <div class="form-group">
+            <label for="exampleFormControlTextarea1">Enter Classroom Code:</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+            <label for="exampleFormControlTextarea2">Enter Student Name:</label>
+            <textarea class="form-control" id="exampleFormControlTextarea2" rows="1"></textarea>
+            <button  onclick="redirectstudent()" type="button" class="btn btn-primary btn-lg">Submit</button>
         </div>
-      </div>
-    </div>
-  </div>
-   <script>
+</div>
 
-    var x = "https://player.twitch.tv/?channel=";
-    var y = localStorage.getItem("channelname");
-    var z = x.concat(y);
-    document.getElementById("video_stream").src = z;
+
+<div class = "container3" id="ProfessorForm">
+        <div class="form-group">
+                <label for="exampleFormControlTextarea3">Enter Classroom Code to Create a Classroom:</label>
+                <textarea class="form-control" id="exampleFormControlTextarea3" rows="1"></textarea>
+                <button  onclick="redirectprofessor()" type="button" class="btn btn-primary btn-lg">Submit</button>
+            </div>
+        
+</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ 
+
+    <script>
+            function showInputStudent() {
+             var y = document.getElementById("ProfessorForm");
+             y.style.display = "none";
+             var x = document.getElementById("StudentForm");
+             x.style.display = "block";
+            }
+    </script>
+    
+
+
+    <script>
+    
+        function redirectprofessor(){
+
+            var getInput0 = document.getElementById("exampleFormControlTextarea3").value;
+            $.get('/create?code=' + getInput0, function(data) {
+                document.location.href='/teacher?code=' + getInput0;
+            });
+
+        }
+    
+    </script>
+
+
+    <script>
+    
+        function redirectstudent(){
+            var getInput1 =  document.getElementById("exampleFormControlTextarea1").value;
+            var getInput2 =  document.getElementById("exampleFormControlTextarea2").value;
+            document.location.href=`/student?code=${ getInput1 }&name=${ getInput2 }`;
+
+        }
+    
+    </script>
+
+
+<script>
+    
+    function showInputProfessor(){
+        var x = document.getElementById("StudentForm");
+             x.style.display = "none";
+        var y = document.getElementById("ProfessorForm");
+             y.style.display = "block";
+             
+
+    }
 
 </script>
-</div>
-  
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="https://awwapp.com/static/widget/js/aww3.min.js"></script>
-  <script src="/js/chat.js"></script>
-  <script src="https://awwapp.com/static/widget/sample_toolbar.js"></script>
 </body>
+
+
+
+  
 
 </html>
