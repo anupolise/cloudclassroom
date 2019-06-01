@@ -73,7 +73,6 @@
         function redirectprofessor(){
 
             var getInput0 = document.getElementById("exampleFormControlTextarea3").value;
-            localStorage.setItem("classroomcodeProf",getInput0);
             $.get('/create?code=' + getInput0, function(data) {
                 document.location.href='/teacher?code=' + getInput0;
             });
@@ -87,9 +86,7 @@
     
         function redirectstudent(){
             var getInput1 =  document.getElementById("exampleFormControlTextarea1").value;
-            localStorage.setItem("classroomcode",getInput1);
             var getInput2 =  document.getElementById("exampleFormControlTextarea2").value;
-            localStorage.setItem("channelname",getInput2);
             document.location.href=`/student?code=${ getInput1 }&name=${ getInput2 }`;
 
         }

@@ -6,6 +6,7 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 // Socket variable
+const TIMESTAMP = Math.floor(new Date() / 1000);
 var classrooms = {};
 
 // Static file serving in public/ directory
@@ -38,10 +39,11 @@ app.get('/create', function(req, res) {
 	if (req.query.code == undefined)
 		res.redirect('/');
 
-	else if (classrooms[req.query.code] == undefined) {
-		classrooms[req.query.code] = createClassroom('Classroom');
-		res.end();
-	}
+	var code = req.query.code;
+	if (classrooms[code] == undefined)
+		classrooms[code] = createClassroom('Classroom');
+
+	res.end();
 });
 
 // Server code
@@ -103,6 +105,12 @@ io.on('connection', function (socket) {
 			if (question) classroom.students[i].socket.emit('question', { question: question});
 		}
 	});
+
+	socket.on('board-code', function(data) {
+		socket.emit('board-code', {
+			code: encode(socket.classroom)
+		});
+	});
 });
 
 function createClassroom(name) {
@@ -128,4 +136,9 @@ function createQuestion(question, resolvedTime) {
 		question: question,
 		resolvedTime: resolvedTime // in seconds
 	};
+}
+
+
+function encode(code) {
+	return TIMESTAMP + code;
 }

@@ -2,8 +2,11 @@ var url = new URL(location.href);
 var socket = io.connect(); // init socket connection
 var name = url.searchParams.get('name'); // user name for current session
 var code = url.searchParams.get('code'); // user name for current session
+var aww;
+var teaching = url.pathname == '/teacher';
 
 socket.emit('classroom-select', { classroom: code, name: name });
+socket.emit('board-code');
 
 // initialize classroom (old messages)
 socket.on('init', function (data) {
@@ -27,6 +30,18 @@ socket.on('chat', function (data) {
 socket.on('question', function (data) {
 	var questionDisplay = document.getElementById('question-display');
 	addMessage(questionDisplay, data.question.question);
+});
+
+// get board code
+socket.on('board-code', function(data) {
+	aww = new AwwBoard('#aww-wrapper', {
+	    apiKey: '7b1dce0b-374d-4bff-b62f-079adcd55386',
+	    boardLink: data.code,
+	    // multiPage: true
+	});
+
+	// if (!teaching)
+		// $('#aww-wrapper').css('pointer-events', 'none');
 });
 
 // send new message
@@ -66,5 +81,10 @@ function addMessage(element, text) {
 	element.scrollTop = element.scrollHeight;
 }
 
-// init popup window
-// $('#select-modal').modal();
+$.ajax({
+    'method': 'GET',
+    'url': 'https://awwapp.com/static/widget/sample_toolbar.html'
+}).done(function(res, status) {
+    $('#aww-wrapper').append(res);
+    initToolbar();
+});
