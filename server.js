@@ -47,7 +47,7 @@ app.get('/create', function(req, res) {
 });
 
 // Server code
-server.listen(process.env.PORT || 5000, function() {
+server.listen(process.env.PORT || 8000, function() {
 	console.log('Server listening on port 8000.');
 });
 
