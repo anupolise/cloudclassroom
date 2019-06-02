@@ -29,23 +29,24 @@
 
 
 
+
 <div class = "container2" id="StudentForm">
-    <div class="form-group">
-            <label for="exampleFormControlTextarea1">Enter Classroom Code:</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
-            <label for="exampleFormControlTextarea2">Enter Student Name:</label>
-            <textarea class="form-control" id="exampleFormControlTextarea2" rows="1"></textarea>
-            <button  onclick="redirectstudent()" type="button" class="btn btn-primary btn-lg">Submit</button>
-        </div>
+    <form class="form-group" onsubmit="redirectstudent()">
+        <label for="exampleFormControlTextarea1">Enter Classroom Code:</label>
+        <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="1">
+        <label for="exampleFormControlTextarea2">Enter Student Name:</label>
+        <input type="text" class="form-control" id="exampleFormControlTextarea2" rows="1">
+        <input type="submit" class="btn btn-primary btn-lg" value="Submit">
+    </form>
 </div>
 
 
 <div class = "container3" id="ProfessorForm">
-        <div class="form-group">
-                <label for="exampleFormControlTextarea3">Enter Classroom Code to Create a Classroom:</label>
-                <textarea class="form-control" id="exampleFormControlTextarea3" rows="1"></textarea>
-                <button  onclick="redirectprofessor()" type="button" class="btn btn-primary btn-lg">Submit</button>
-            </div>
+        <form class="form-group" onsubmit="redirectprofessor()">
+            <label for="exampleFormControlTextarea3">Enter Classroom Code to Create a Classroom:</label>
+            <input type="text" class="form-control" id="exampleFormControlTextarea3" rows="1">
+            <input type="submit" class="btn btn-primary btn-lg" value="Submit">
+        </form>
         
 </div>
 
@@ -63,6 +64,7 @@
              y.style.display = "none";
              var x = document.getElementById("StudentForm");
              x.style.display = "block";
+             document.getElementById("exampleFormControlTextarea1").focus();
             }
     </script>
     
@@ -71,11 +73,13 @@
     <script>
     
         function redirectprofessor(){
+            event.preventDefault();
 
             var getInput0 = document.getElementById("exampleFormControlTextarea3").value;
             $.get('/create?code=' + getInput0, function(data) {
                 document.location.href='/teacher?code=' + getInput0;
             });
+            return false;
 
         }
     
@@ -85,10 +89,12 @@
     <script>
     
         function redirectstudent(){
+            event.preventDefault();
+
             var getInput1 =  document.getElementById("exampleFormControlTextarea1").value;
             var getInput2 =  document.getElementById("exampleFormControlTextarea2").value;
             document.location.href=`/student?code=${ getInput1 }&name=${ getInput2 }`;
-
+            return false;
         }
     
     </script>
@@ -101,12 +107,12 @@
              x.style.display = "none";
         var y = document.getElementById("ProfessorForm");
              y.style.display = "block";
-             
-
+        document.getElementById("exampleFormControlTextarea3").focus();
     }
 
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="/js/index.js"></script>
 
 </body>
 

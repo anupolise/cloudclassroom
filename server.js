@@ -76,6 +76,8 @@ io.on('connection', function (socket) {
 			classrooms[code].students.push(user);
 		}
 
+		console.log(classrooms[code]);
+
 		socket.classroom = code;
 		socket.emit('init', {
 			msglist: classrooms[code].messages,
