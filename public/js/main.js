@@ -34,8 +34,12 @@ socket.on('question', function (data) {
 
 // get board code
 socket.on('board-code', function(data) {
+	const FREEKEY = '7b1dce0b-374d-4bff-b62f-079adcd55386'; // for http://localhost:8000
+	const PAIDKEY = 'c0f20fe4-3e65-4fcf-823a-d821138cc8a7'; // for https://cloud-classroom.herokuapp.com domain
+	var key = (url.hostname === 'localhost') ? FREEKEY : PAIDKEY;
+
 	aww = new AwwBoard('#aww-wrapper', {
-	    apiKey: '7b1dce0b-374d-4bff-b62f-079adcd55386',
+	    apiKey: key,
 	    boardLink: data.code,
 	    // multiPage: true
 	});
