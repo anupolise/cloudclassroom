@@ -32,9 +32,14 @@
 	border-radius: 5px;
 	padding: 15px;
 	box-shadow: 2px 2px 5px grey;
+	margin-left: 0;
+}
+
+.message .checkbox {
+    transform: scale(1.5);
 }
 
 hr {
 	margin-top: 0;
 	margin-bottom: 0;
-}
+

@@ -20,8 +20,16 @@ socket.on('init', function (data) {
 
 	for (var i = 0; i < data.questionList.length; i++) {
 		console.log(data.questionList[i]);
-		addMessage(questionDisplay, data.questionList[i]);
+		addQuestion(questionDisplay, data.questionList[i]);
 	}
+
+	$('.message .checkbox').on('click', function() {
+		var timestamp = new Date().getMinutes() + ":" + new Date().getSeconds();
+		if ($(this).is(':checked'))
+			$(this).prev().text(timestamp);
+		else
+			$(this).prev().text('');
+	});
 });
 
 // receive new message
@@ -33,7 +41,7 @@ socket.on('chat', function (data) {
 // receive new message
 socket.on('question', function (data) {
 	var questionDisplay = document.getElementById('question-display');
-	addMessage(questionDisplay, data);
+	addQuestion(questionDisplay, data);
 });
 
 // get board code
@@ -93,6 +101,24 @@ function addMessage(element, data) {
 		<div class="message">\
 			<div class="sender"> ${ data.sender } </div>\
 			<div class="text" style="background-image: linear-gradient(to right, ${ hexToRgb('#' + data.color, 0.5) } , ${ hexToRgb('#' + data.color, 0.2) });"> ${ data.message } </div>\
+		</div>\
+	`).appendTo(element);
+	element.scrollTop = element.scrollHeight;
+}
+
+// add new message
+function addQuestion(element, data) {
+	if (teaching)
+		var checkbox = '<input type="checkbox" class="checkbox float-right col-1">';
+
+	$(`\
+		<div class="message">\
+			<div class="sender"> ${ data.sender } </div>\
+			<div class="text row" style="background-image: linear-gradient(to right, ${ hexToRgb('#' + data.color, 0.5) } , ${ hexToRgb('#' + data.color, 0.2) });">
+				<div class="col-8 pl-0 pr-0"> ${ data.message } </div>
+				<div class="col-3"></div>
+				${ checkbox }
+			</div>\
 		</div>\
 	`).appendTo(element);
 	element.scrollTop = element.scrollHeight;
