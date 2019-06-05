@@ -130,6 +130,7 @@ function addQuestion(element, data) {
 
 function show_chat(){
 	document.getElementById("message-display").style.display = "block";
+	document.getElementById("classroom-chat").style.display = "block";
 	document.getElementById("question-display").style.display = "none";
 	var msg = document.getElementById("show-chat-btn");
 	var ques = document.getElementById("show-ques-btn");
@@ -139,6 +140,7 @@ function show_chat(){
 
 function show_questions(){
 	document.getElementById("message-display").style.display = "none";
+	document.getElementById("classroom-chat").style.display = "none";
 	document.getElementById("question-display").style.display = "block";
 	var msg = document.getElementById("show-chat-btn");
 	var ques = document.getElementById("show-ques-btn");
