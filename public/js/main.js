@@ -130,10 +130,8 @@ function show_chat(){
 	document.getElementById("question-display").style.display = "none";
 	var msg = document.getElementById("show-chat-btn");
 	var ques = document.getElementById("show-ques-btn");
-	msg.classList.remove("btn-secondary");
-	msg.classList.add("btn-primary");
-	ques.classList.remove("btn-primary");
-	ques.classList.add("btn-secondary")
+	msg.classList.add("active");
+	ques.classList.remove("active");
 }
 
 function show_questions(){
@@ -141,10 +139,8 @@ function show_questions(){
 	document.getElementById("question-display").style.display = "block";
 	var msg = document.getElementById("show-chat-btn");
 	var ques = document.getElementById("show-ques-btn");
-	msg.classList.remove("btn-primary");
-	msg.classList.add("btn-secondary");
-	ques.classList.remove("btn-secondary");
-	ques.classList.add("btn-primary")
+	msg.classList.remove("active");
+	ques.classList.add("active");
 }
 
 function get_stream_time_stamp(){

@@ -17,11 +17,11 @@
   display:none !important;
 }
 
-#question-display{
+/* #question-display{
   height: 70%;
   width:inherit;
   background-color: grey;
-}
+} */
 
 #chat-question-toggler{
   width: inherit;
