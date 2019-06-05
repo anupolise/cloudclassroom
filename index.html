@@ -10,12 +10,26 @@
     <link rel = "stylesheet"
    type = "text/css"
    href = "/css/startpage.css" />
+  <link rel="stylesheet" href="/css/topbar.css">
 
    <link href="https://fonts.googleapis.com/css?family=Barlow&display=swap" rel="stylesheet">
     <title>Cloud Classroom</title>
   </head>
   <body>
+
+
+
+<div id="container0">
+    <div id="topbar">
+      <a href="/"><img id="logo" src='/img/logo.png'/></a>
+      <a href="/" class="btn title"> Cloud Classroom </a>
+    </div>
+
+    <div id="error-message"></div>
+
     <h1>Cloud Classroom</h1>
+
+
 
 <div class = "container1">
     <p>Are you a Student or Professor?</p>
@@ -45,11 +59,16 @@
         <form class="form-group" onsubmit="redirectprofessor()">
             <label for="exampleFormControlTextarea3">Enter Classroom Code to Create a Classroom:</label>
             <input type="text" class="form-control" id="exampleFormControlTextarea3" rows="1">
+
+            <label for="exampleFormControlTextarea4">Enter Channel Name:</label>
+            <input type="text" class="form-control" id="exampleFormControlTextarea4" rows="1">
+
             <input type="submit" class="btn btn-primary btn-lg" value="Submit">
         </form>
         
 </div>
 
+</div>    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -75,10 +94,16 @@
         function redirectprofessor(){
             event.preventDefault();
 
+           
+            var stream = document.getElementById("exampleFormControlTextarea4").value;
+            localStorage.setItem(document.getElementById("exampleFormControlTextarea3").value,stream);
+            
             var getInput0 = document.getElementById("exampleFormControlTextarea3").value;
             $.get('/create?code=' + getInput0, function(data) {
                 document.location.href='/teacher?code=' + getInput0;
             });
+
+            
             return false;
 
         }
