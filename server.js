@@ -20,16 +20,20 @@ app.get('/', function (req, res) {
 
 // Student route
 app.get('/student', function (req, res) {
-	if (req.query.code == undefined || classrooms[req.query.code] == undefined)
+	if (req.query.code == undefined)
 		res.redirect('/');
+	else if (classrooms[req.query.code] == undefined)
+		res.redirect(`/?error=Classroom code ${ req.query.code } not found.`);
 	else
 		res.sendFile(path.join(__dirname + '/student.html'));
 });
 
 // Teacher route
 app.get('/teacher', function (req, res) {
-	if (req.query.code == undefined || classrooms[req.query.code] == undefined)
+	if (req.query.code == undefined)
 		res.redirect('/');
+	else if (classrooms[req.query.code] == undefined)
+		res.redirect(`/?error=Classroom code ${ req.query.code } not found.`);
 	else
 		res.sendFile(path.join(__dirname + '/teacher.html'));
 });
@@ -37,7 +41,7 @@ app.get('/teacher', function (req, res) {
 // Create classroom route
 app.get('/create', function(req, res) {
 	if (req.query.code == undefined)
-		res.redirect('/');
+		res.redirect('/?error=Please enter a classroom code.');
 
 	var code = req.query.code;
 	if (classrooms[code] == undefined)
@@ -79,6 +83,9 @@ io.on('connection', function (socket) {
 		console.log(classrooms[code]);
 
 		socket.classroom = code;
+		socket.color = (function lol(m, s, c) {
+						    return s[m.floor(m.random() * s.length)] + (c && lol(m, s, c - 1));
+						})(Math, '3456789ABCDEF', 4);
 		socket.emit('init', {
 			msglist: classrooms[code].messages,
 			questionList: classrooms[code].questions,
@@ -89,22 +96,37 @@ io.on('connection', function (socket) {
 	// Send/receive message
 	socket.on('chat', function (data) {
 		var classroom = classrooms[socket.classroom];
-		classroom.messages.push(data.msg);
+		var message = data.message;
+		var sender = data.sender;
+
+		var messageObject = {
+			message: message,
+			color: socket.color,
+			sender: sender 
+		};
+
+		classroom.messages.push(messageObject);
 
 		var question;
-		if (data.msg.includes('@teacher')) {
-			question = createQuestion(data.msg.replace('@teacher', ''), -1);
+		if (message.includes('@teacher')) {
+			var item = createQuestion(message.replace('@teacher', ''), -1);
+			question = {
+				message: item.question,
+				resolvedTime: item.resolvedTime,
+				color: socket.color,
+				sender: sender
+			};
 			classroom.questions.push(question);
 		}
 
 		if (classroom.teacher != undefined) {
-			classroom.teacher.socket.emit('chat', { msg: data.msg });
-			if (question) classroom.teacher.socket.emit('question', { question: question });
+			classroom.teacher.socket.emit('chat', messageObject);
+			if (question) classroom.teacher.socket.emit('question', question);
 		}
 
 		for (var i = 0; i < classroom.students.length; i++) {
-			classroom.students[i].socket.emit('chat', { msg: data.msg });
-			if (question) classroom.students[i].socket.emit('question', { question: question});
+			classroom.students[i].socket.emit('chat', messageObject);
+			if (question) classroom.students[i].socket.emit('question', question);
 		}
 	});
 

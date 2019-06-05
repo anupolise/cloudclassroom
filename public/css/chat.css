@@ -1,12 +1,17 @@
 
 #chat-wrapper input {
-	padding: 10px; width: 70%; margin-right: .5%;
-	border-bottom: 1px black;
-	border-style: inset;
+	padding: 10px; width: 70%;
+	margin-left: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	box-shadow: 2px 2px 5px grey;
 }
 
 #chat-wrapper button {
 	width: 25%; background: rgb(130, 224, 255); border: none; padding: 10px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	box-shadow: 2px 2px 5px grey;
 }
 
 #chat-wrapper form {
@@ -19,7 +24,24 @@
 }
 
 .message {
+	padding: 10px;
+	padding-right: 20px;
+}
+
+.message .sender {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.message .text {
+	border-radius: 5px;
 	padding: 15px;
+	box-shadow: 2px 2px 5px grey;
+	margin-left: 0;
+}
+
+.message .checkbox {
+    transform: scale(1.5);
 }
 
 #classroom-chat{
@@ -29,9 +51,10 @@
 
 #chat-wrapper {
 	width: 100%;
+	padding: 0px !important;
 }
 
 hr {
 	margin-top: 0;
 	margin-bottom: 0;
-}
+

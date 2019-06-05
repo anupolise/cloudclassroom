@@ -1,6 +1,6 @@
 var url = new URL(location.href);
 var socket = io.connect(); // init socket connection
-var name = url.searchParams.get('name') || "Teacher"; // user name for current session
+var name = url.searchParams.get('name') || "Instructor"; // user name for current session
 var code = url.searchParams.get('code'); // user name for current session
 var aww;
 var teaching = url.pathname == '/teacher';
@@ -18,20 +18,30 @@ socket.on('init', function (data) {
 	for (var i = 0; i < data.msglist.length; i++)
 		addMessage(messageDisplay, data.msglist[i]);
 
-	for (var i = 0; i < data.questionList.length; i++)
-		addMessage(questionDisplay, data.questionList[i].question);
+	for (var i = 0; i < data.questionList.length; i++) {
+		console.log(data.questionList[i]);
+		addQuestion(questionDisplay, data.questionList[i]);
+	}
+
+	$('.message .checkbox').on('click', function() {
+		var timestamp = new Date().getMinutes() + ":" + new Date().getSeconds();
+		if ($(this).is(':checked'))
+			$(this).prev().text(timestamp);
+		else
+			$(this).prev().text('');
+	});
 });
 
 // receive new message
 socket.on('chat', function (data) {
 	var messageDisplay = document.getElementById('message-display');
-	addMessage(messageDisplay, data.msg);
+	addMessage(messageDisplay, data);
 });
 
 // receive new message
 socket.on('question', function (data) {
 	var questionDisplay = document.getElementById('question-display');
-	addMessage(questionDisplay, data.question.question);
+	addQuestion(questionDisplay, data);
 });
 
 // get board code
@@ -66,7 +76,7 @@ $('#classroom-chat').submit(function(e){
 	e.preventDefault();
 
 	var messageInput = document.getElementById('input-field');
-	socket.emit('chat', { msg: name + ': ' + messageInput.value });
+	socket.emit('chat', { message: messageInput.value, sender: name });
 	messageInput.value = '';
 	return false;
 });
@@ -86,18 +96,79 @@ $('#classroom-select').submit(function(e){
 });
 
 // add new message
-function addMessage(element, text) {
-	var node = document.createElement("div");
-	node.innerText = text;
-	node.setAttribute("class", "message");
-	
-	var hr = document.createElement("hr");
-
-	element.appendChild(hr);
-	element.appendChild(node);
+function addMessage(element, data) {
+	$(`\
+		<div class="message">\
+			<div class="sender"> ${ data.sender } </div>\
+			<div class="text" style="background-image: linear-gradient(to right, ${ hexToRgb('#' + data.color, 0.5) } , ${ hexToRgb('#' + data.color, 0.2) });"> ${ data.message } </div>\
+		</div>\
+	`).appendTo(element);
 	element.scrollTop = element.scrollHeight;
 }
 
+// add new message
+function addQuestion(element, data) {
+	var checkbox;
+	if (teaching)
+		checkbox = '<input type="checkbox" class="checkbox float-right col-1">';
+	else
+		checkbox = '';
+
+	$(`\
+		<div class="message">\
+			<div class="sender"> ${ data.sender } </div>\
+			<div class="text row" style="background-image: linear-gradient(to right, ${ hexToRgb('#' + data.color, 0.5) } , ${ hexToRgb('#' + data.color, 0.2) });">
+				<div class="col-8 pl-0 pr-0"> ${ data.message } </div>
+				<div class="col-3"></div>
+				${ checkbox }
+			</div>\
+		</div>\
+	`).appendTo(element);
+	element.scrollTop = element.scrollHeight;
+}
+
+
+function show_chat(){
+	document.getElementById("message-display").style.display = "block";
+	document.getElementById("question-display").style.display = "none";
+	var msg = document.getElementById("show-chat-btn");
+	var ques = document.getElementById("show-ques-btn");
+	msg.classList.remove("btn-secondary");
+	msg.classList.add("btn-primary");
+	ques.classList.remove("btn-primary");
+	ques.classList.add("btn-secondary")
+}
+
+function show_questions(){
+	document.getElementById("message-display").style.display = "none";
+	document.getElementById("question-display").style.display = "block";
+	var msg = document.getElementById("show-chat-btn");
+	var ques = document.getElementById("show-ques-btn");
+	msg.classList.remove("btn-primary");
+	msg.classList.add("btn-secondary");
+	ques.classList.remove("btn-secondary");
+	ques.classList.add("btn-primary")
+}
+
+function get_stream_time_stamp(){
+	var xmlHttp = new XMLHttpRequest();
+	var url = "https://api.twitch.tv/kraken/streams/tropicalmangopunch"
+	xmlHttp.open( "GET", url, false );
+    xmlHttp.setRequestHeader("Client-ID","c7f027q1czl0pu51905r4beqtzwzb7");
+    xmlHttp.send(null);
+	var response = JSON.parse(xmlHttp.responseText);
+	var stream_start_time = new Date(response["stream"]["created_at"]);
+	var curr_date = new Date(new Date().toISOString());
+	var diff = curr_date - stream_start_time;
+	var minutes = 0, seconds;
+	if (diff > 60e3){
+		minutes = diff / 60e3
+	}
+	seconds = (diff % 60e3) / 1e3;
+	console.log("minutes: ", minutes, "seconds: ", seconds);
+}
+
+// set top bar
 function setTopBar() {
 	var username = $('#topbar #user-name');
 	var invitelink = $('#topbar #invite-link');
@@ -107,10 +178,21 @@ function setTopBar() {
 	invitelink.attr('href', url.host + '?code=' + code);
 }
 
-$.ajax({
-    'method': 'GET',
-    'url': 'https://awwapp.com/static/widget/sample_toolbar.html'
-}).done(function(res, status) {
-    $('#aww-wrapper').append(res);
-    initToolbar();
-});
+// https://stackoverflow.com/a/5624139/8443192
+function hexToRgb(hex, trans) {
+	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	return result ? `rgba(\
+		${ parseInt(result[1], 16) },\
+		${ parseInt(result[2], 16) },\
+		${ parseInt(result[3], 16) },\
+		${ trans })` : '';
+}
+
+if (teaching)
+	$.ajax({
+	    'method': 'GET',
+	    'url': 'https://awwapp.com/static/widget/sample_toolbar.html'
+	}).done(function(res, status) {
+	    $('#aww-wrapper').append(res);
+	    initToolbar();
+	});

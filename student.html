@@ -46,7 +46,11 @@
 
     <div class="question-video-wrapper col-sm-3">
       <div id="question-display">
+        <div class="section-title">Questions</div>
       </div>
+
+      <div style="height: 2%;"></div>
+
       <iframe
         id="video_stream"
         src="https://player.twitch.tv/?<channel, video, or collection>"
@@ -59,29 +63,13 @@
  
   <div id="chat-wrapper" class="col-sm-3">
 
-    <div id="message-display" style="overflow-y: scroll"></div>
+    <div id="message-display" style="overflow-y: scroll">
+      <div class="section-title">Chat</div>
+    </div>
     <form action="" id="classroom-chat">
       <input id="input-field" autocomplete="off"/>
       <button>Send</button>
     </form>
-
-
-    <div class="modal" tabindex="-1" srole="dialog" id="select-modal"data-backdrop="static"  data-backdrop="static" >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Select Your Classroom</h5>
-          </div>
-          <div class="modal-body">
-            <form action="" id="classroom-select">
-              <input id="classroom-select-field" autocomplete="off" placeholder="Classroom ID"/>
-              <input id="name-select-field" autocomplete="off" placeholder="Your Name"/>
-              <button>Enter</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
    
 </div>
