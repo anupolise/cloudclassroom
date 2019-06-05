@@ -55,7 +55,7 @@ socket.on('board-code', function(data) {
 	    apiKey: key,
 	    boardLink: data.code,
 	    enableZoom: false,
-	    // multiPage: true
+	    //multiPage: true
 		});
 	}
 	else{
@@ -108,8 +108,11 @@ function addMessage(element, data) {
 
 // add new message
 function addQuestion(element, data) {
+	var checkbox;
 	if (teaching)
-		var checkbox = '<input type="checkbox" class="checkbox float-right col-1">';
+		checkbox = '<input type="checkbox" class="checkbox float-right col-1">';
+	else
+		checkbox = '';
 
 	$(`\
 		<div class="message">\
@@ -180,3 +183,12 @@ function hexToRgb(hex, trans) {
 		${ parseInt(result[3], 16) },\
 		${ trans })` : '';
 }
+
+if (teaching)
+	$.ajax({
+	    'method': 'GET',
+	    'url': 'https://awwapp.com/static/widget/sample_toolbar.html'
+	}).done(function(res, status) {
+	    $('#aww-wrapper').append(res);
+	    initToolbar();
+	});

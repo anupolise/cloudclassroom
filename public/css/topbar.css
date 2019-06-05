@@ -1,8 +1,11 @@
 #topbar {
-	height: 50px;
+	height: 60px;
 	background-color: #483d41;
-	padding: 5px;
-	margin-bottom: 50px;
+	/*padding: 0px !important;*/
+	margin-left: -20px !important;
+	margin-right:  -20px !important;
+	margin-top:  -20px !important;
+	margin-bottom: 30px;
 }
 
 #topbar .title {
@@ -18,4 +21,27 @@
 	border-radius: 5px;
 	background-color: #f2f2f2;
 	margin-left: 5px;
+}
+
+#right-group{
+	padding-top:10px;
+	padding-right:10px;
+	font-size: 16px;
+	text-align: right;
+	line-height: 0.5;
+	float: right;
+	color: white !important;
+	font-weight: bold;
+}
+
+#user-name{
+	color:white;
+	font-size: 18px;
+
+}
+
+#invite-link {
+	color:white;
+	font-size: 14px;
+
 }
