@@ -23,6 +23,10 @@
   background-color: grey;
 }
 
+#chat-question-toggler{
+  width: inherit;
+}
+
 .row {
 
   
