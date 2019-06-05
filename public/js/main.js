@@ -1,6 +1,6 @@
 var url = new URL(location.href);
 var socket = io.connect(); // init socket connection
-var name = url.searchParams.get('name') || "Teacher"; // user name for current session
+var name = url.searchParams.get('name') || "Instructor"; // user name for current session
 var code = url.searchParams.get('code'); // user name for current session
 var aww;
 var teaching = url.pathname == '/teacher';
