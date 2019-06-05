@@ -18,20 +18,22 @@ socket.on('init', function (data) {
 	for (var i = 0; i < data.msglist.length; i++)
 		addMessage(messageDisplay, data.msglist[i]);
 
-	for (var i = 0; i < data.questionList.length; i++)
-		addMessage(questionDisplay, data.questionList[i].question);
+	for (var i = 0; i < data.questionList.length; i++) {
+		console.log(data.questionList[i]);
+		addMessage(questionDisplay, data.questionList[i]);
+	}
 });
 
 // receive new message
 socket.on('chat', function (data) {
 	var messageDisplay = document.getElementById('message-display');
-	addMessage(messageDisplay, data.msg);
+	addMessage(messageDisplay, data);
 });
 
 // receive new message
 socket.on('question', function (data) {
 	var questionDisplay = document.getElementById('question-display');
-	addMessage(questionDisplay, data.question.question);
+	addMessage(questionDisplay, data);
 });
 
 // get board code
@@ -55,7 +57,7 @@ $('#classroom-chat').submit(function(e){
 	e.preventDefault();
 
 	var messageInput = document.getElementById('input-field');
-	socket.emit('chat', { msg: name + ': ' + messageInput.value });
+	socket.emit('chat', { message: messageInput.value, sender: name });
 	messageInput.value = '';
 	return false;
 });
@@ -75,18 +77,17 @@ $('#classroom-select').submit(function(e){
 });
 
 // add new message
-function addMessage(element, text) {
-	var node = document.createElement("div");
-	node.innerText = text;
-	node.setAttribute("class", "message");
-	
-	var hr = document.createElement("hr");
-
-	element.appendChild(hr);
-	element.appendChild(node);
+function addMessage(element, data) {
+	$(`\
+		<div class="message">\
+			<div class="sender"> ${ data.sender } </div>\
+			<div class="text" style="background-image: linear-gradient(to right, ${ hexToRgb('#' + data.color, 0.5) } , ${ hexToRgb('#' + data.color, 0.2) });"> ${ data.message } </div>\
+		</div>\
+	`).appendTo(element);
 	element.scrollTop = element.scrollHeight;
 }
 
+// set top bar
 function setTopBar() {
 	var username = $('#topbar #user-name');
 	var invitelink = $('#topbar #invite-link');
@@ -103,3 +104,13 @@ $.ajax({
     $('#aww-wrapper').append(res);
     initToolbar();
 });
+
+// https://stackoverflow.com/a/5624139/8443192
+function hexToRgb(hex, trans) {
+	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	return result ? `rgba(\
+		${ parseInt(result[1], 16) },\
+		${ parseInt(result[2], 16) },\
+		${ parseInt(result[3], 16) },\
+		${ trans })` : '';
+}

@@ -19,7 +19,19 @@
 }
 
 .message {
+	padding: 10px;
+	padding-right: 20px;
+}
+
+.message .sender {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.message .text {
+	border-radius: 5px;
 	padding: 15px;
+	box-shadow: 2px 2px 5px grey;
 }
 
 hr {
