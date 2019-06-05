@@ -20,16 +20,20 @@ app.get('/', function (req, res) {
 
 // Student route
 app.get('/student', function (req, res) {
-	if (req.query.code == undefined || classrooms[req.query.code] == undefined)
+	if (req.query.code == undefined)
 		res.redirect('/');
+	else if (classrooms[req.query.code] == undefined)
+		res.redirect(`/?error=Classroom code ${ req.query.code } not found.`);
 	else
 		res.sendFile(path.join(__dirname + '/student.html'));
 });
 
 // Teacher route
 app.get('/teacher', function (req, res) {
-	if (req.query.code == undefined || classrooms[req.query.code] == undefined)
+	if (req.query.code == undefined)
 		res.redirect('/');
+	else if (classrooms[req.query.code] == undefined)
+		res.redirect(`/?error=Classroom code ${ req.query.code } not found.`);
 	else
 		res.sendFile(path.join(__dirname + '/teacher.html'));
 });
@@ -37,7 +41,7 @@ app.get('/teacher', function (req, res) {
 // Create classroom route
 app.get('/create', function(req, res) {
 	if (req.query.code == undefined)
-		res.redirect('/');
+		res.redirect('/?error=Please enter a classroom code.');
 
 	var code = req.query.code;
 	if (classrooms[code] == undefined)
