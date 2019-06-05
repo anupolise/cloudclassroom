@@ -45,7 +45,7 @@ socket.on('board-code', function(data) {
 	    apiKey: key,
 	    boardLink: data.code,
 	    enableZoom: false,
-	    // multiPage: true
+	    //multiPage: true
 		});
 	}
 	else{
