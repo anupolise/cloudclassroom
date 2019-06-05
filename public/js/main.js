@@ -42,11 +42,22 @@ socket.on('board-code', function(data) {
 	const PAIDKEY = 'c0f20fe4-3e65-4fcf-823a-d821138cc8a7'; // for https://cloud-classroom.herokuapp.com domain
 	var key = (url.hostname === 'localhost') ? FREEKEY : PAIDKEY;
 
-	aww = new AwwBoard('#aww-wrapper', {
+	if(teaching){
+		aww = new AwwBoard('#aww-wrapper', {
+	    apiKey: key,
+	    boardLink: data.code,
+	    enableZoom: false,
+	    // multiPage: true
+		});
+	}
+	else{
+		aww = new AwwBoard('#aww-wrapper', {
 	    apiKey: key,
 	    boardLink: data.code,
 	    // multiPage: true
-	});
+		});
+	}
+	
 
 	// if (!teaching)
 		// $('#aww-wrapper').css('pointer-events', 'none');
