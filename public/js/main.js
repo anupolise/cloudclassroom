@@ -184,3 +184,12 @@ function hexToRgb(hex, trans) {
 		${ parseInt(result[3], 16) },\
 		${ trans })` : '';
 }
+
+if (teaching)
+	$.ajax({
+	    'method': 'GET',
+	    'url': 'https://awwapp.com/static/widget/sample_toolbar.html'
+	}).done(function(res, status) {
+	    $('#aww-wrapper').append(res);
+	    initToolbar();
+	});
