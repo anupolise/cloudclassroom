@@ -47,9 +47,24 @@
               scrolling="<scrolling>"
               allowfullscreen="<allowfullscreen>">
             </iframe>
-            <div id="questions-box">
+            <!-- <div id="questions-box">
+            </div> -->
+            <div id="question-display" style="height: 60%; display: none">
+
+            </div>
+            <div id="message-display" style="height: 60%; overflow-y: scroll">
+                <form action="" id="classroom-chat">
+                    <input id="input-field" autocomplete="off"/>
+                    <button>Send</button>
+                  </form>
+            </div>
+            
+            <div class="row" id="chat-question-toggler">
+                <button type="button" id="show-chat-btn" onclick="show_chat()" class="btn btn-primary">Chat</button>
+                <button type="button" id="show-ques-btn" onclick="show_questions()" class="btn btn-secondary">Questions</button>
             </div>
         </div>
+        <!-- <button onclick="get_stream_time_stamp()">Current stream time!</button> -->
    </div>
   
 
