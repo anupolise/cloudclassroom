@@ -45,6 +45,10 @@
         <form class="form-group" onsubmit="redirectprofessor()">
             <label for="exampleFormControlTextarea3">Enter Classroom Code to Create a Classroom:</label>
             <input type="text" class="form-control" id="exampleFormControlTextarea3" rows="1">
+
+            <label for="exampleFormControlTextarea4">Enter Channel Name:</label>
+            <input type="text" class="form-control" id="exampleFormControlTextarea4" rows="1">
+
             <input type="submit" class="btn btn-primary btn-lg" value="Submit">
         </form>
         
@@ -75,10 +79,16 @@
         function redirectprofessor(){
             event.preventDefault();
 
+           
+            var stream = document.getElementById("exampleFormControlTextarea4").value;
+            localStorage.setItem(document.getElementById("exampleFormControlTextarea3").value,stream);
+            
             var getInput0 = document.getElementById("exampleFormControlTextarea3").value;
             $.get('/create?code=' + getInput0, function(data) {
                 document.location.href='/teacher?code=' + getInput0;
             });
+
+            
             return false;
 
         }
