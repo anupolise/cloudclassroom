@@ -85,6 +85,46 @@ function addMessage(element, text) {
 	element.scrollTop = element.scrollHeight;
 }
 
+function show_chat(){
+	document.getElementById("message-display").style.display = "block";
+	document.getElementById("question-display").style.display = "none";
+	var msg = document.getElementById("show-chat-btn");
+	var ques = document.getElementById("show-ques-btn");
+	msg.classList.remove("btn-secondary");
+	msg.classList.add("btn-primary");
+	ques.classList.remove("btn-primary");
+	ques.classList.add("btn-secondary")
+}
+
+function show_questions(){
+	document.getElementById("message-display").style.display = "none";
+	document.getElementById("question-display").style.display = "block";
+	var msg = document.getElementById("show-chat-btn");
+	var ques = document.getElementById("show-ques-btn");
+	msg.classList.remove("btn-primary");
+	msg.classList.add("btn-secondary");
+	ques.classList.remove("btn-secondary");
+	ques.classList.add("btn-primary")
+}
+
+function get_stream_time_stamp(){
+	var xmlHttp = new XMLHttpRequest();
+	var url = "https://api.twitch.tv/kraken/streams/tropicalmangopunch"
+	xmlHttp.open( "GET", url, false );
+    xmlHttp.setRequestHeader("Client-ID","c7f027q1czl0pu51905r4beqtzwzb7");
+    xmlHttp.send(null);
+	var response = JSON.parse(xmlHttp.responseText);
+	var stream_start_time = new Date(response["stream"]["created_at"]);
+	var curr_date = new Date(new Date().toISOString());
+	var diff = curr_date - stream_start_time;
+	var minutes = 0, seconds;
+	if (diff > 60e3){
+		minutes = diff / 60e3
+	}
+	seconds = (diff % 60e3) / 1e3;
+	console.log("minutes: ", minutes, "seconds: ", seconds);
+}
+
 $.ajax({
     'method': 'GET',
     'url': 'https://awwapp.com/static/widget/sample_toolbar.html'
