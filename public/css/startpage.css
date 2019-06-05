@@ -1,7 +1,7 @@
 body{
 
   font-family: 'Barlow', sans-serif;
-  padding:20px;
+  /*padding:20px;*/
   background-image: url("Cloud.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -28,17 +28,29 @@ h1{
 
 }
 
+#container0 {
+    width: 70%;
+    height: 90%;
+    position: absolute;
+    min-width: 500px;
+    min-height: 500px;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+    object-fit: contain;
+   }
+
 .container1{
 
-    position: absolute;
+    position: relative;
     font-size: 30pt;
     text-align: center;
     color: white;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -40%);
-    padding: 20px;
     
+    padding: 20px;
+    object-fit: contain;
     
     
 
@@ -59,15 +71,14 @@ label{
 }
 .container2{
 
-    position: absolute;
+    position: relative;
     font-size: 30pt;
     text-align: center;
     color: white;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -40%);
+   
     padding: 20px;
     display: none;
+    object-fit: contain;
     
 
 
@@ -75,16 +86,14 @@ label{
 
 .container3{
 
-    position: absolute;
+    position: relative;
     font-size: 30pt;
     text-align: center;
     color: white;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -40%);
+    
     padding: 20px;
     display: none;
-   
+    object-fit: contain;
 
 
 }

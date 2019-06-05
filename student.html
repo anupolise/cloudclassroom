@@ -16,9 +16,18 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <link rel="stylesheet" href="https://awwapp.com/static/widget/css/toolbar_style.css">
   <link rel="stylesheet" href="/css/chat.css">
+  <link rel="stylesheet" href="/css/topbar.css">
 </head>
 
 <body>
+
+  <div id="topbar" class="row">
+    <a href="/"><img id="logo" src='/img/logo.png'/></a>
+    <a href="/" class="btn title"> Cloud Classroom </a>
+    <div id="user-name" class="title"></div>
+    <a id="invite-link" class="title"></a>
+  </div>
+
   <div class="row" id="content">
 
     <div id ="whiteboard" class="col-sm-6">
@@ -48,6 +57,7 @@
       <button>Send</button>
     </form>
 
+
     <div class="modal" tabindex="-1" srole="dialog" id="select-modal"data-backdrop="static"  data-backdrop="static" >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -65,14 +75,7 @@
       </div>
     </div>
   </div>
-   <script>
-
-    var x = "https://player.twitch.tv/?channel=";
-    var y = localStorage.getItem("channelname");
-    var z = x.concat(y);
-    document.getElementById("video_stream").src = z;
-
-</script>
+   
 </div>
   
 
@@ -83,6 +86,18 @@
   <script src="https://awwapp.com/static/widget/js/aww3.min.js"></script>
   <script src="/js/main.js"></script>
   <script src="https://awwapp.com/static/widget/sample_toolbar.js"></script>
+
+
+  <script>
+
+     
+      var x = "https://player.twitch.tv/?channel=";
+      var y = localStorage.getItem(code);
+      var z = x.concat(y);
+      document.getElementById("video_stream").src = z;
+  
+  </script>
+
 </body>
 
 </html>
