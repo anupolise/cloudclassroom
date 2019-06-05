@@ -1,0 +1,21 @@
+#topbar {
+	height: 50px;
+	background-color: #483d41;
+	padding: 5px;
+	margin-bottom: 50px;
+}
+
+#topbar .title {
+	color: white;
+	font-weight: bold;
+	font-size: 30px;
+	line-height: 0.5;
+	margin-right: 20px;
+}
+
+#logo {
+	height: 100%;
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	margin-left: 5px;
+}

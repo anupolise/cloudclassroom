@@ -1,9 +1,11 @@
 var url = new URL(location.href);
 var socket = io.connect(); // init socket connection
-var name = url.searchParams.get('name'); // user name for current session
+var name = url.searchParams.get('name') || "Teacher"; // user name for current session
 var code = url.searchParams.get('code'); // user name for current session
 var aww;
 var teaching = url.pathname == '/teacher';
+
+setTopBar();
 
 socket.emit('classroom-select', { classroom: code, name: name });
 socket.emit('board-code');
@@ -83,6 +85,15 @@ function addMessage(element, text) {
 	element.appendChild(hr);
 	element.appendChild(node);
 	element.scrollTop = element.scrollHeight;
+}
+
+function setTopBar() {
+	var username = $('#topbar #user-name');
+	var invitelink = $('#topbar #invite-link');
+
+	username.text(name);
+	invitelink.text("Invite Link: " + url.host + '?code=' + code);
+	invitelink.attr('href', url.host + '?code=' + code);
 }
 
 $.ajax({
