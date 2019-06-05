@@ -163,6 +163,7 @@ function get_stream_time_stamp(){
 	}
 	seconds = (diff % 60e3) / 1e3;
 	console.log("minutes: ", minutes, "seconds: ", seconds);
+}
 
 // set top bar
 function setTopBar() {
@@ -173,14 +174,6 @@ function setTopBar() {
 	invitelink.text("Invite Link: " + url.host + '?code=' + code);
 	invitelink.attr('href', url.host + '?code=' + code);
 }
-
-$.ajax({
-    'method': 'GET',
-    'url': 'https://awwapp.com/static/widget/sample_toolbar.html'
-}).done(function(res, status) {
-    $('#aww-wrapper').append(res);
-    initToolbar();
-});
 
 // https://stackoverflow.com/a/5624139/8443192
 function hexToRgb(hex, trans) {
