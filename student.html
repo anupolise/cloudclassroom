@@ -55,6 +55,7 @@
       <button>Send</button>
     </form>
 
+
     <div class="modal" tabindex="-1" srole="dialog" id="select-modal"data-backdrop="static"  data-backdrop="static" >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -72,14 +73,7 @@
       </div>
     </div>
   </div>
-   <script>
-
-    var x = "https://player.twitch.tv/?channel=";
-    var y = localStorage.getItem("channelname");
-    var z = x.concat(y);
-    document.getElementById("video_stream").src = z;
-
-</script>
+   
 </div>
   
 
@@ -90,6 +84,18 @@
   <script src="https://awwapp.com/static/widget/js/aww3.min.js"></script>
   <script src="/js/main.js"></script>
   <script src="https://awwapp.com/static/widget/sample_toolbar.js"></script>
+
+
+  <script>
+
+     
+      var x = "https://player.twitch.tv/?channel=";
+      var y = localStorage.getItem(code);
+      var z = x.concat(y);
+      document.getElementById("video_stream").src = z;
+  
+  </script>
+
 </body>
 
 </html>

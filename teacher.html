@@ -51,6 +51,8 @@
             </div>
         </div>
    </div>
+  
+
    
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.min.js"></script>
@@ -60,6 +62,20 @@
   <script src="https://awwapp.com/static/widget/js/aww3.min.js"></script>
   <script src="/js/main.js"></script>
   <script src="https://awwapp.com/static/widget/sample_toolbar.js"></script>
+
+
+
+
+  <script>
+      
+      var x = "https://player.twitch.tv/?channel=";
+      var y = localStorage.getItem(code);
+      
+      var z = x.concat(y);
+      document.getElementById("video_stream").src = z;
+  
+  </script>
+
 </body>
 
 </html>
