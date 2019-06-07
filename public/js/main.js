@@ -172,8 +172,8 @@ function setTopBar() {
 	var invitelink = $('#topbar #invite-link');
 
 	username.text(name);
-	invitelink.text("Invite Link: " + url.host + '?code=' + code);
-	invitelink.attr('href', url.host + '?code=' + code);
+	invitelink.text("Invite Link: " + url.origin + '?code=' + code);
+	invitelink.attr('href', url.origin + '?code=' + code);
 }
 
 // https://stackoverflow.com/a/5624139/8443192
