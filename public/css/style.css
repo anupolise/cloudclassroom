@@ -35,6 +35,13 @@
   background-color: white;
 }
 
+ .nav-pills>a:hover { 
+	background-color:none;
+}
+
+.nav-pills .nav-link.active{
+  background-color: #C08552;
+}
 
 .question-video-wrapper{
   height: 100%;
