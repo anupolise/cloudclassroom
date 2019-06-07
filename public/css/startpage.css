@@ -5,7 +5,7 @@ body{
   background-image: url("Cloud.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  
+  background-color: #86c1d1;
 }
 
 h1{
@@ -38,7 +38,7 @@ h1{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    overflow: auto;
+    /*overflow: auto;*/
     object-fit: contain;
    }
 
