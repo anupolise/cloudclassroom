@@ -50,38 +50,42 @@
               scrolling="<scrolling>"
               allowfullscreen="<allowfullscreen>">
             </iframe>
-         
-            <div style="height: 2%;"></div>
+            
+            <nav class="nav nav-pills nav-fill black" style="margin-top:5px; border-radius: 5px; background-color: white;">
+              <a class="nav-item nav-link active" id="show-chat-btn" onclick="show_chat()">Chat</a>
+              <a class="nav-item nav-link" id="show-ques-btn" onclick="show_questions()">Questions</a>
+            </nav>
+            <!-- <div class="collapse navbar-collapse" id="navbarNav"> -->
+              <!-- <nav class="navbar navbar-expand navbar-light" style="background-color: #e3f2fd; margin-top: 5px; padding: 0">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav nav-pills" style="margin-left:25%">
+                    <li class="nav-item active" id="show-chat-btn">
+                      <a class="nav-link" onclick="show_chat()">Chat</a>
+                    </li>
+                    <li class="nav-item" id="show-ques-btn">
+                      <a class="nav-link" onclick="show_questions()">Question</a>
+                    </li>
+                  </ul>
+                </div>
+              </nav> -->
+              <!-- </div> -->
+
+            <div style="height: 1%;"></div>
             <!-- <div id="questions-box">
             </div> -->
-            <div id="question-display" style="height: 60%; display: none">
-
+            <div id="question-display" style="height: 61%; display: none">
             </div>
-            <div id="message-display" style="height: 50%; overflow-y: scroll; margin-top: 10px;">
+            <div id="message-display" style="height: 51%; overflow-y: scroll; background-color: white">
             </div>
 
             <form action="" id="classroom-chat" style="position: relative; margin-top: 5px">
               <input id="input-field" autocomplete="off" style="width: 68%;"/>
               <button style="width: 29%;">Send</button>
             </form>
-
-            <!-- <div class="collapse navbar-collapse" id="navbarNav"> -->
-            <nav class="navbar navbar-expand navbar-light" style="background-color: #e3f2fd; margin-top: 5px">
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav" style="text-align: center">
-                <ul class="navbar-nav">
-                  <li class="nav-item active" id="show-chat-btn">
-                    <a class="nav-link" onclick="show_chat()">Chat</a>
-                  </li>
-                  <li class="nav-item" id="show-ques-btn">
-                    <a class="nav-link" onclick="show_questions()">Question</a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
-            <!-- </div> -->
 
             <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <button type="button" id="show-chat-btn" onclick="show_chat()" class="navbar-toggler">Chat</button>

@@ -25,6 +25,9 @@
   margin-right: 0;
 }
 
+#message-display{
+  padding-top:40px;
+}
 #chat-wrapper {
 
   object-fit: contain;
@@ -32,6 +35,13 @@
   background-color: white;
 }
 
+ .nav-pills>a:hover { 
+	background-color:none;
+}
+
+.nav-pills .nav-link.active{
+  background-color: #C08552;
+}
 
 .question-video-wrapper{
   height: 100%;
@@ -165,5 +175,15 @@ form button {
   padding: 5px;
   text-align: center;
   color: white !important;
-  box-shadow: 2px 2px 5px grey;
+  /*box-shadow: 2px 2px 5px grey;*/
+  position:absolute;
+  left:0px;
+  right:0px;
+
+}
+
+#questions-title{
+  top:0px;
+   left:15px;
+  right:15px;
 }
