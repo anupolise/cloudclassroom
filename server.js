@@ -108,8 +108,8 @@ io.on('connection', function (socket) {
 		classroom.messages.push(messageObject);
 
 		var question;
-		if (message.includes('@teacher')) {
-			var item = createQuestion(message.replace('@teacher', ''), -1);
+		if (message.includes('@instructor')) {
+			var item = createQuestion(message.replace('@instructor', ''), -1);
 			question = {
 				message: item.question,
 				resolvedTime: item.resolvedTime,

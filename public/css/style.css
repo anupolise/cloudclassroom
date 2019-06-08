@@ -39,8 +39,14 @@
 	background-color:none;
 }
 
-.nav-pills .nav-link.active{
+.nav-pills .nav-link {
   background-color: #C08552;
+  color: white;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #FFFFFF;
+  color: black;
 }
 
 .question-video-wrapper{
@@ -186,4 +192,12 @@ form button {
   top:0px;
    left:15px;
   right:15px;
+}
+
+.blink {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  30% { opacity: 0.3; }
 }

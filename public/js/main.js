@@ -36,12 +36,20 @@ socket.on('init', function (data) {
 socket.on('chat', function (data) {
 	var messageDisplay = document.getElementById('message-display');
 	addMessage(messageDisplay, data);
+
+	var chatFocused = $('#message-display').css('display') == 'block';
+	if (!chatFocused)
+		$('#show-chat-btn').addClass('blink');
 });
 
 // receive new message
 socket.on('question', function (data) {
 	var questionDisplay = document.getElementById('question-display');
 	addQuestion(questionDisplay, data);
+
+	var chatFocused = $('#message-display').css('display') == 'block';
+	if (chatFocused)
+		$('#show-ques-btn').addClass('blink');
 });
 
 // get board code
@@ -136,6 +144,8 @@ function show_chat(){
 	var ques = document.getElementById("show-ques-btn");
 	msg.classList.add("active");
 	ques.classList.remove("active");
+
+	$('#show-chat-btn').removeClass('blink');
 }
 
 function show_questions(){
@@ -146,6 +156,8 @@ function show_questions(){
 	var ques = document.getElementById("show-ques-btn");
 	msg.classList.remove("active");
 	ques.classList.add("active");
+
+	$('#show-ques-btn').removeClass('blink');
 }
 
 function get_stream_time_stamp(){
