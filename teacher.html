@@ -51,9 +51,9 @@
               allowfullscreen="<allowfullscreen>">
             </iframe>
             
-            <nav class="nav nav-pills nav-fill black" style="margin-top:5px; border-radius: 5px; background-color: white;">
-              <a class="nav-item nav-link active" id="show-chat-btn" onclick="show_chat()">Chat</a>
-              <a class="nav-item nav-link" id="show-ques-btn" onclick="show_questions()">Questions</a>
+            <nav class="nav nav-pills nav-fill black" style="height: 30px; margin-top:5px; border-radius: 5px; background-color: white;">
+              <a class="nav-item nav-link active" id="show-chat-btn" onclick="show_chat()" style="height: 100%">Chat</a>
+              <a class="nav-item nav-link" id="show-ques-btn" onclick="show_questions()" style="height: 100%">Questions</a>
             </nav>
             <!-- <div class="collapse navbar-collapse" id="navbarNav"> -->
               <!-- <nav class="navbar navbar-expand navbar-light" style="background-color: #e3f2fd; margin-top: 5px; padding: 0">
@@ -77,16 +77,23 @@
             <div style="height: 1%;"></div>
             <!-- <div id="questions-box">
             </div> -->
-            <div id="question-display" style="height: 61%; display: none">
+            <div id="question-display" style="height: calc(100% - 31% - 38px); display: none">
             </div>
-            <div id="message-display" style="height: 51%; overflow-y: scroll; background-color: white">
-            </div>
-
+<!-- 
             <form action="" id="classroom-chat" style="position: relative; margin-top: 5px">
               <input id="input-field" autocomplete="off" style="width: 68%;"/>
               <button style="width: 29%;">Send</button>
-            </form>
+            </form> -->
 
+            <div id="chat-wrapper">
+              <div id="message-display" style="height: calc(100% - 31% - 88px); overflow-y: scroll; background-color: white; padding-top: 0;"></div>
+
+              <form action="" id="classroom-chat">
+                <input id="input-field" autocomplete="off"/>
+                <button>Send</button>
+              </form>
+            </div>
+<!-- 1 + 5 + 30% + 5% -->
             <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <button type="button" id="show-chat-btn" onclick="show_chat()" class="navbar-toggler">Chat</button>
                 <button type="button" id="show-ques-btn" onclick="show_questions()" class="btn btn-secondary">Questions</button>
