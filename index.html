@@ -7,6 +7,12 @@
 
     <link rel='icon' href='/img/icon.png' type='image/x-icon'/ >
 
+    <script src="https://kit.fontawesome.com/8280d02534.js"></script> <!-- for question mark icon -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel = "stylesheet"
@@ -15,11 +21,16 @@
   <link rel="stylesheet" href="/css/topbar.css">
 
    <link href="https://fonts.googleapis.com/css?family=Barlow&display=swap" rel="stylesheet">
+
+
+
+  
+
     <title>Cloud Classroom</title>
   </head>
   <body>
 
-
+        
 
 <div id="container0">
     <div id="topbar">
@@ -32,7 +43,8 @@
    <!-- <h1>Cloud Classroom</h1> -->
 
 
-
+   
+  
 <div class = "container1">
     <p>Are you a Student or Instructor?</p>
     <button type="button" class="btn btn-primary btn-lg" onclick="showInputProfessor()">Instructor</button>
@@ -57,16 +69,37 @@
 </div>
 
 
+
+
 <div class = "container3" id="ProfessorForm">
         <form class="form-group" onsubmit="redirectprofessor()">
             <label for="exampleFormControlTextarea3">Enter Classroom Code to Create a Classroom:</label>
             <input type="text" class="form-control" id="exampleFormControlTextarea3" rows="1">
+
+
+
+            <button type="button" class="btn btn-default" onclick="showHelp()">
+                    <i class="fas fa-question-circle"></i>
+            </button>
 
             <label for="exampleFormControlTextarea4">Enter Channel Name:</label>
             <input type="text" class="form-control" id="exampleFormControlTextarea4" rows="1">
 
             <input type="submit" class="btn btn-primary btn-lg" value="Submit">
         </form>
+
+
+
+        <div id = "instructions">
+
+            <p>How to set up livestreaming: </p>
+            <p>1. Visit twitch.com and create an account.</p>
+            <p>2. Download the mobile twitch app for iphone or android (or stream from computer, but  mobile is easier).</p>
+            <p>3a. For mobile: Login on the app -> go to your profile -> click "Go Live!"</p>
+            <p>3b. For Desktop: Go to your twitch dashboard and go live using broadcast software specified on the website</p>
+            <p>4. Enter in the name of your channel above and create your classroom.</p>
+
+        </div>
         
 </div>
 
@@ -125,6 +158,22 @@
         }
     
     </script>
+
+
+<script>
+    function showHelp(){
+        
+        var x = document.getElementById("instructions");
+
+        if (x.style.display === "block") {
+          x.style.display = "none";
+        } else {
+          x.style.display = "block";
+        }
+    }
+
+
+</script>
 
 
 <script>

@@ -8,6 +8,51 @@ body{
   background-color: #86c1d1;
 }
 
+/*
+.helperbutton .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+.helperbutton .btn:hover {
+    background-color: white;
+}
+
+  */
+#helperbutton{
+
+    background-image: url(/img/questionmark.svg);
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+
+}
+.helperbutton:hover { background-color: white; }
+
+#instructions{
+
+    font-size: 15pt;
+    text-align: left;
+    color: black;
+    border-style: solid;
+    border-width: 2px; 
+    padding: 20px;
+    display: none;
+}
+
 h1{
 
     font-family: 'Barlow', sans-serif;
