@@ -22,14 +22,6 @@ socket.on('init', function (data) {
 		console.log(data.questionList[i]);
 		addQuestion(questionDisplay, data.questionList[i]);
 	}
-
-	$('.message .checkbox').on('click', function() {
-		var timestamp = new Date().getMinutes() + ":" + new Date().getSeconds();
-		if ($(this).is(':checked'))
-			$(this).prev().text(timestamp);
-		else
-			$(this).prev().text('');
-	});
 });
 
 // receive new message
@@ -45,6 +37,7 @@ socket.on('chat', function (data) {
 // receive new message
 socket.on('question', function (data) {
 	var questionDisplay = document.getElementById('question-display');
+
 	addQuestion(questionDisplay, data);
 
 	var chatFocused = $('#message-display').css('display') == 'block';
@@ -77,6 +70,11 @@ socket.on('board-code', function(data) {
 
 	// if (!teaching)
 		// $('#aww-wrapper').css('pointer-events', 'none');
+});
+
+socket.on('question-answered', function(data) {
+	var questionDisplay = document.getElementById('question-display');
+	questionDisplay.children[data.index].getElementsByClassName("timestamp")[0].innerText = data.timestamp;
 });
 
 // send new message
@@ -118,7 +116,7 @@ function addMessage(element, data) {
 function addQuestion(element, data) {
 	var checkbox;
 	if (teaching)
-		checkbox = '<input type="checkbox" class="checkbox float-right col-1">';
+		checkbox = '<input type="checkbox" class="checkbox float-right col-1" onclick="recordTime(this)">';
 	else
 		checkbox = '';
 
@@ -127,12 +125,25 @@ function addQuestion(element, data) {
 			<div class="sender"> ${ data.sender } </div>\
 			<div class="text row" style="background-image: linear-gradient(to right, ${ hexToRgb('#' + data.color, 0.5) } , ${ hexToRgb('#' + data.color, 0.2) });">
 				<div class="col-8 pl-0 pr-0"> ${ data.message } </div>
-				<div class="col-3"></div>
+				<div class="col-3 timestamp"> ${ data.resolvedTime }</div>
 				${ checkbox }
 			</div>\
 		</div>\
 	`).appendTo(element);
+
 	element.scrollTop = element.scrollHeight;
+}
+
+
+function recordTime(element) {
+	var timestamp = new Date().getMinutes() + ":" + new Date().getSeconds();
+
+	if (!element.checked) {
+		timestamp = '';
+	}
+
+	var questions = Array.prototype.slice.call( element.parentElement.parentElement.parentElement.children );
+	socket.emit('question-answered', { index: questions.indexOf(element.parentElement.parentElement), timestamp: timestamp });
 }
 
 

@@ -82,13 +82,23 @@ font-family: 'Barlow', sans-serif;
   background-size: 150% 150%;
 }
 
-#questions-box, #question-display{
+#questions-box, #question-display {
   background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 5px;
-  margin-top: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   padding-bottom: 20px;
-  height: calc(70% - 25px);
 }
+
+#questions-box {
+  height: calc(70% - 25px);
+  margin-top: 5px;
+}
+
+#question-display {
+  height: calc(70% - 20px);
+  overflow-y: scroll;
+}
+
 #content {
   height: calc(100% - 70px);
 }

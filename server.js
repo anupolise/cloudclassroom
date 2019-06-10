@@ -96,7 +96,6 @@ io.on('connection', function (socket) {
 	// Send/receive message
 	socket.on('chat', function (data) {
 		var classroom = classrooms[socket.classroom];
-
 		if (classroom == undefined) return;
 
 		var message = data.message;
@@ -112,7 +111,7 @@ io.on('connection', function (socket) {
 
 		var question;
 		if (message.includes('@instructor')) {
-			var item = createQuestion(message.replace('@instructor', ''), -1);
+			var item = createQuestion(message.replace('@instructor', ''), '');
 			question = {
 				message: item.question,
 				resolvedTime: item.resolvedTime,
@@ -137,6 +136,21 @@ io.on('connection', function (socket) {
 		socket.emit('board-code', {
 			code: encode(socket.classroom)
 		});
+	});
+
+	socket.on('question-answered', function(data) {
+		var classroom = classrooms[socket.classroom];
+
+		if (classroom == undefined ||
+			data.index == undefined ||
+			data.timestamp == undefined ||
+			classroom.questions[data.index] == undefined) { return; }
+
+		classroom.questions[data.index].resolvedTime = data.timestamp;
+
+		for (var i = 0; i < classroom.students.length; i++) {
+			classroom.students[i].socket.emit('question-answered', data);
+		}
 	});
 });
 
