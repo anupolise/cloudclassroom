@@ -36,7 +36,9 @@
   </div> -->
 
   <div id="topbar" class="navbar-header">
-    <a href="/"><img id="logo" src='/img/logo.png'/></a>
+    <a href="/">
+      <img id="logo" src='/img/logo.png'/>
+    </a>
     <a href="/" class="btn title"> Cloud Classroom </a>
     <div id="right-group">
       <p id="user-name" ></p>
@@ -52,12 +54,14 @@
     </div>
 
     <div class="question-video-wrapper col-sm-3">
+      <div id="questions-title" class="section-title">Questions</div>
       <div id="question-display">
-        <div id="questions-title" class="section-title">Questions</div>
-        <div style="height:40px;"></div>
+        <div style="overflow-y: scroll;">
+          <div style="height:40px;"></div>
+        </div>
       </div>
 
-      <div style="height: 2%;"></div>
+      <div style="height: 20px;"></div>
 
       <iframe
         id="video_stream"
@@ -68,16 +72,18 @@
       </iframe>
     </div>
 
- 
-  <div id="chat-wrapper" class="col-sm-3">
-    <div id="chat-title" class="section-title">Chat</div>
-    <div id="message-display" style="overflow-y: scroll; height: calc(100% - 50px);">
-      
+
+  <div class="col-sm-3" style="padding-left: 10px; padding-right: 20px; height: 100%; "> 
+      <div id="chat-title" class="section-title">Chat</div>
+      <div id="chat-wrapper" style="border-top-left-radius: 5px; border-top-right-radius: 5px;">
+      <div id="message-display" style="overflow-y: scroll; margin-top: 5px; height: calc(100% - 55px);">
+        
+      </div>
+      <form action="" id="classroom-chat">
+        <input id="input-field" autocomplete="off" placeholder="Type @instructor ... to ask a question."/>
+        <button>Send</button>
+      </form>
     </div>
-    <form action="" id="classroom-chat">
-      <input id="input-field" autocomplete="off" placeholder="Type @instructor ... to ask a question."/>
-      <button>Send</button>
-    </form>
   </div>
    
 </div>
