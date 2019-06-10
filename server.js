@@ -96,6 +96,9 @@ io.on('connection', function (socket) {
 	// Send/receive message
 	socket.on('chat', function (data) {
 		var classroom = classrooms[socket.classroom];
+
+		if (classroom == undefined) return;
+
 		var message = data.message;
 		var sender = data.sender;
 
