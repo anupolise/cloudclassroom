@@ -72,7 +72,8 @@ svg{
 body{
 font-family: 'Barlow', sans-serif;
   padding:20px;
-  background-image: linear-gradient(-45deg, #004972, #016d9c, #ede5ce, #c7839c);
+  /*background-image: linear-gradient(-45deg, #004972, #016d9c, #ede5ce, #c7839c);*/
+  background-image: linear-gradient(-45deg,#a0a0a0, #808080, #8080a0, #c0a080, #c0a060);
   background-size: 150% 150%;
 }
 
