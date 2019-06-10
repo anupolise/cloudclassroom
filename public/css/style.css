@@ -32,7 +32,7 @@
 
   object-fit: contain;
   overflow: contain;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
  .nav-pills>a:hover { 
@@ -73,7 +73,7 @@ body{
 font-family: 'Barlow', sans-serif;
   padding:20px;
 	background-color:rgba(243,233,220,.7);
-  background: linear-gradient(-45deg, #C08552, #5E3023, #895737, #DAB49D);
+  background: linear-gradient(-45deg, #9ad2cb, #d7ebba, #feffbe, #ebd494);
   background-size: 400% 400%;
   -webkit-animation: Gradient 15s ease infinite;
   -moz-animation: Gradient 15s ease infinite;
@@ -81,7 +81,7 @@ font-family: 'Barlow', sans-serif;
 }
 
 #questions-box, #question-display{
-  background-color:white;
+  background-color: rgba(255, 255, 255, 0.9);
   overflow-y: scroll;
   height:68%;
   margin-bottom:0%;
@@ -100,7 +100,7 @@ font-family: 'Barlow', sans-serif;
 }
 
 #aww-wrapper{
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.9);
   border: 2px solid black;
   width: 100%;
   height: 100%;
@@ -200,4 +200,70 @@ form button {
 
 @keyframes blinker {
   30% { opacity: 0.3; }
+}
+
+
+.nav-pills .nav-item {
+    border-bottom-right-radius: unset !important;
+    border-bottom-left-radius: unset !important;
+}
+
+.cloud {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  -webkit-animation-name: cloud; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+  animation-name: cloud;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.c1 {
+  left: 5vw;
+  transform: scale(1);
+  animation-duration: 60s;
+  margin-top: calc(50px + 10vh);
+}
+
+.c2 {
+  left: 20vw;
+  transform: scale(0.8);
+  animation-duration: 40s;
+  margin-top: calc(50px + 30vh);
+}
+
+.c3 {
+  left: 60vw;
+  transform: scale(1.2);
+  animation-duration: 55s;
+  margin-top: calc(50px + 50vh);
+}
+
+.c4 {
+  left: 40vw;
+  transform: scale(1);
+  animation-duration: 50s;
+  margin-top: calc(50px + 60vh);
+}
+
+.c5 {
+  left: 10vw;
+  transform: scale(1.5);
+  animation-duration: 65s;
+  margin-top: calc(50px + 80vh);
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes cloud {
+  0%   {left:0px; top:0px;}
+  100% {left:calc(100% - 200px); top:0px;}
+  /*100% {left:0px; top:0px;}*/
+}
+
+/* Standard syntax */
+@keyframes cloud {
+  0%   {left:0px; top:0px;}
+  100% {left:calc(100% - 200px); top:0px;}
+  /*100% {left:0px; top:0px;}*/
 }
