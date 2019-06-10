@@ -72,12 +72,8 @@ svg{
 body{
 font-family: 'Barlow', sans-serif;
   padding:20px;
-	background-color:rgba(243,233,220,.7);
-  background: linear-gradient(-45deg, #9ad2cb, #d7ebba, #feffbe, #ebd494);
-  background-size: 400% 400%;
-  -webkit-animation: Gradient 15s ease infinite;
-  -moz-animation: Gradient 15s ease infinite;
-  animation: Gradient 15s ease infinite;
+  background-image: linear-gradient(-45deg, #004972, #016d9c, #ede5ce, #c7839c);
+  background-size: 150% 150%;
 }
 
 #questions-box, #question-display{
